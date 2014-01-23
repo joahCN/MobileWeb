@@ -1,0 +1,612 @@
+@import "_settings";
+
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+body {
+    background: #f6f5f6;
+}
+
+input::-webkit-input-placeholder {
+    color: #ccc;
+    direction: rtl;
+}
+
+input[type='search']::-webkit-input-placeholder,  input.placeholderLeft::-webkit-input-placeholder{
+    direction: ltr;
+    text-indent: 0;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.container {
+    background: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    @include box-shadow(0 1px 1px #fff);
+    overflow: hidden;
+}
+
+.editField {
+    color: #0076a3;
+}
+
+.onlyBlock, .dataGroup {
+    border-color: $borderColorOuter;
+}
+
+.lastBlock {
+    border-color: $borderColorOuter;
+}
+
+.firstBlock {
+    border-color: $borderColorOuter;
+    border-bottom-color: $borderColorInner;
+}
+
+.middleBlock {
+    border-color: $borderColorOuter;
+    border-bottom-color: $borderColorInner;
+}
+
+.greetingDescription {
+    color: $fontColor;
+}
+
+.firstBlock, .middleBlock, .lastBlock, .onlyBlock {
+    color: $fontColor;
+}
+
+.navigationBar {
+    @include background(#2E84A0 linear-gradient(top, #12435e, #093b56));
+    //background: #073a55;
+}
+
+.header, .headerTop {
+    color: #666;
+}
+
+.leftButton, .rightButton, .rightButtonDisabled {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.actionButton {
+    color: $buttonFontColor ;
+    border-color: #a1c1d2;
+    background-color: #d1e2ed;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.actionButtonBlock {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.horizontalButtonsBlock .actionButtonBlock {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+ul.centeredButtons {
+    li[data-hidden="1"] {
+        display: none;
+    }
+}
+
+.fullWidth {
+    width: 100%;
+    margin: 0;
+    height: 0;
+}
+
+.leftButton,
+.rightButton {
+    color: white;
+}
+.leftButton {
+    border-right: 1px solid #2a6a8c;
+}
+    .leftButton div {
+        border-right: 1px solid #052334;
+    }
+
+.rightButton,
+.rightButtonDisabled {
+    border-left: 1px solid #052334;
+    margin-left: -1px;
+}
+    .rightButton div,
+    .rightButtonDisabled div {
+        border-left: 1px solid #2a6a8c;
+    }
+
+.rightButtonDisabled {
+    color: #4e7a91;
+}
+
+.deleteButton {
+    // nothing goes here :(
+}
+
+.value {
+    color: $valueColor;
+}
+
+.valueGray {
+    color: #CFCFCF;
+}
+
+.imageCaption {
+    color: #666666;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+.checked, .unchecked{
+    background-repeat: no-repeat;
+    height: 18px;
+    margin-left: auto;
+    width: 13px;
+}
+.checked {
+    background-image: url("../images/tick.png");
+    @media all and (-webkit-min-device-pixel-ratio: 2){
+        background-image: url(../images/tick_x2.png);
+        background-size: 13px 13px;
+    }
+}
+
+.radioBlockCenterRight > .checked {
+    margin:auto;
+    top: 0;
+    bottom: 0;
+    right:10px;
+}
+
+.radioBlockTopLeft > .checked {
+  left:10px;
+  top: 12px;
+}
+
+.filter {
+    background: #e0e0e0;
+    border-bottom: 1px solid #bbb;
+    padding: 10px 0;
+}
+
+.sectionHeader {
+    background: #f0f0f0;
+    color: $valueColor;
+    border-bottom: 1px solid $borderColorInner;
+}
+
+.sectionHeaderAddButton {
+    background: #cde0eb url("../images/set_btn_plus.png") 3px 3px no-repeat;
+    border-color: #a1c1d2;
+}
+
+.extensionListItem {
+    background: #fff;
+    position: relative;
+    -webkit-margin-bottom-collapse: separate;
+    -webkit-margin-top-collapse: separate;
+    border-bottom: 1px solid $borderColorInner;
+    color: $fontColor;
+    font-size: 13px;
+    min-height: 45px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.extensionListIcon {
+    background-image: url(../images/department_icon.png);
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 52px;
+    margin: -7px 9px 0px -5px;
+    display: none;
+    float: left;
+}
+.extensionListText {
+    float: left;
+    width: 53%
+}
+
+.ipPhonesListItem {
+    position: relative;
+    -webkit-margin-bottom-collapse: separate;
+    -webkit-margin-top-collapse: separate;
+    border-bottom: 1px solid $borderColorInner;
+    color: $fontColor;
+    font-size: 12px;
+    min-height: 46px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.ipPhonesListIcon
+{
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 28px;
+    left: 8px;
+    top: 9px;
+    width: 30px;
+    padding-top: 25px;
+    font-size: 10px;
+}
+
+.ipPhonesListSubHeader{
+    position: relative;
+    -webkit-margin-bottom-collapse: separate;
+    -webkit-margin-top-collapse: separate;
+    border-bottom: 1px solid $borderColorInner;
+    color: $fontColor;
+    font-size: 12px;
+    white-space: nowrap;
+
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+.mailboxHeader-line {
+    padding-top: 7px;
+    background: #96BFD1;
+    height: 21px;
+    padding-left: 18px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.mailboxHeader-value {
+    float: right;
+    margin-right: 18px;
+}
+
+.didList li {
+    color: $fontColor;
+}
+
+.textTabButtonSelected {
+    background: #0b405e;
+    border-color: #0b405e;
+    color: white;
+}
+.textTabButtonNotSelected {
+    background: #d1e2ed;
+    border-color: #a1c1d2;
+    color: #0b405e;
+}
+
+.radioButtonWithIcon-simultaneously, .radioButtonWithIcon-mailbox {
+    background-repeat: no-repeat;
+    height: 35px;
+    margin-right: 10px;
+    margin-top: -10px;
+}
+.radioButtonWithIcon-simultaneously {
+    width: 75px;
+}
+.radioButtonWithIcon-mailbox {
+    width: 27px;
+}
+
+.radioButtonDisabled {
+    color: #CCC;
+}
+
+.infoName {
+    width:50%;
+    display: inline-block;
+    text-align: center;
+}
+.infoExt {
+    color: #0076A3;
+}
+.playerPanel {
+    background: #0b405e;
+    margin: 0 -20px;
+}
+.staticPanel {
+    margin: 0 18px;
+    padding: 18px 0;
+    position: relative;
+}
+.trash {
+    background: url(../images/trash.png) no-repeat;
+    height: 27px;
+    width: 25px;
+}
+
+.trashTopRight {
+    margin-top: -4px;
+    float: right;
+}
+
+.checkOn, .checkOff, .checkOnDisabled, .checkOffDisabled {
+    background-repeat: no-repeat;
+    width: auto;
+    min-width: 13px;
+    background-position: center right;
+    padding-right : 26px;
+    line-height: 18px;
+	height: 18px;
+	margin-top: -2px;
+}
+
+.plainCheck {
+	padding-right : 0;
+}
+
+.checkOn {
+    background-image: url(../images/check_on.png);
+
+    @media all and (-webkit-min-device-pixel-ratio: 2){
+        background-image: url(../images/check_on_x2.png);
+        background-size: 13px 13px;
+    }
+}
+.checkOff {
+    background-image: url(../images/check_off.png);
+
+    @media all and (-webkit-min-device-pixel-ratio: 2){
+        background-image: url(../images/check_off_x2.png);
+        background-size: 13px 13px;
+    }
+}
+.checkOnDisabled {
+    background-image: url(../images/check_on_disabled.png);
+}
+.checkOffDisabled {
+}
+
+.orderUp, .orderDown, .orderUpDisabled, .orderDownDisabled {
+    display: block;
+    height: 27px;
+    left: 12px;
+    margin-top: -8px;
+    width: 52px;
+}
+.orderUp {
+    background-image: url(../images/btn_up.png);
+}
+.orderUpDisabled {
+    background-image: url(../images/btn_up_disabled.png);
+}
+.orderDown {
+    background-image: url(../images/btn_down.png);
+}
+.orderDownDisabled {
+    background-image: url(../images/btn_down_disabled.png);
+}
+
+.imageWithText {
+    min-height: 70px;
+    @include background(#D7E6F0 linear-gradient(top, #C0D8E7, #F8FBFC));
+}
+
+.screenMenuButton {
+    background: #d1e3ec;
+    box-shadow: 0 -1px 0 #90b2c4;
+    border-top: 1px solid #fff;
+    color: $valueColor;
+}
+
+.detailsButton {
+    background-image: url(../images/details.png);
+}
+
+
+.radioBlock {
+    background-color: white;
+}
+
+.checkedRadioBlock {
+}
+
+.radioBlock, .checkedRadioBlock {
+    border: 1px solid $borderColorOuter;
+}
+
+.recommendedBillingCycle {
+    background: #FF7C10;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 10px;
+    @include border-radius(0 8px 0 8px);
+}
+
+.callingPlan .planName{
+    color: #FF7C10;
+    font-weight: bold;
+    margin-right: 6.5em;
+}
+
+.callingPlan .planInfo{
+    margin: 6px 0 0 0;
+    font-size: 12px;
+}
+
+.callingPlan .planPrice {
+    color: $valueColor;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.billingCycle .planName{
+    color: #FF7C10;
+    font-weight: bold;
+    margin-right: 6.5em;
+}
+
+.billingCycle .planInfo {
+    color: #00709C;
+    font-size: 12px;
+}
+
+.billingCycle .planInfo .amount {
+    font-weight: bold;
+}
+
+.billingPlan .planName{
+    color: #FF7C10;
+    font-weight: bold;
+}
+
+.billingPlan .planInfo {
+    color: #00709C;
+    font-size: 12px;
+}
+
+.billingPlan .planInfo .amount {
+    font-weight: bold;
+}
+
+.billingPlan .includes{
+    margin-top: 8px;
+    color: #666;
+    font-size: 12px;
+}
+
+.billingPlan ul.includesList{
+    padding: 0 0 0 20px;
+    margin: 0;
+}
+
+.billingPlan ul.includesList li {
+    padding: 0;
+    margin: 0;
+}
+
+
+.iCallingHAC .rateBackground {
+    background-color: #E4ECF2;
+}
+
+.iCallingHAC .rateText {
+    color: #60717E;
+}
+
+.iCallingInt .rateBackground {
+    background-color: white;
+}
+
+.iCallingInt .rateText {
+    color: #888888;
+}
+
+.imageTabBar{
+    height: 55px;
+    background: #e7f1f6;
+}
+
+.imageTab_no_active, .imageTab_active {
+    width: 100%
+}
+
+.imageTab_active .content, .imageTab_no_active .content {
+    height: 53px;
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid #9ebccc;
+}
+
+.imageTab_active .content {
+    background-color: #d1e2ed;
+    zoom: 1;
+}
+
+.imageTab_not_first .content {
+    background-image: url(../images/line.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+}
+
+.imageTab_active .bottom, .imageTab_no_active .bottom {
+    border-bottom: 1px solid #fff;
+}
+
+.searchMatch {
+    color: #0076A3;
+    font-weight: bold;
+}
+
+.infoBlock {
+    background-color: #FFFAE4;
+    border-color: $borderColorOuter;
+}
+
+.disabled {
+    color: gray;
+}
+
+.ringGroup-item-number-number {
+    color:$valueColor;
+}
+
+div .green_action_btn_container div .actionButton{
+  background-color: #40BB36;
+  border-radius: 90px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 -1px 0 #000000;
+  border: 0px;
+  height:35px;
+}
+
+.gradientColorBlue {
+  background-color:#064060;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#064060,endColorStr=#1D5D80);/*IE6*/
+  background:-moz-linear-gradient(left,#064060,#1D5D80);/*others*/
+  background:-webkit-gradient(linear, 0% 0%, 100% 0%, from(#064060), to(#1D5D80));/*others*/
+}
+
+.gradientColorGray {
+  background-color:#CCCCCC;
+  padding:10px 8px 6px;
+  border: 1px solid #CCCCCC;
+  margin-bottom:10px;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=#f6f6f8);/*IE6*/
+  background:-moz-linear-gradient(top,#b8c4cb,#f6f6f8);/*others*/
+  background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#b8c4cb), to(#f6f6f8));/*others*/
+}
+
+.editFieldDisabledContainer {
+  height: 27px;
+  position: relative;
+  .editFieldDisabledNameContainer {
+    position: absolute;
+    left: 0;
+    bottom: 13px
+  }
+
+  .editFieldDisabledValueContainer {
+    position: absolute;
+    right: 0;
+    bottom: 13px;
+  }
+}
+
+.editFieldDisabledDetailContainer {
+  height: auto;
+  .editFieldDisabledNameContainer,.editFieldDisabledValueContainer {
+    bottom: auto;
+    position: relative;
+    display: inline-block;
+  }
+}
+.multipleLineContainerUnderField {
+  border-top: 1px solid #e8e8e8;
+  padding-top: 13px;
+}
