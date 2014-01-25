@@ -1,1 +1,24 @@
 @import "style_raw.scss";
+
+.ui-pane {
+    display: box;
+}
+.ui-pane-icon{
+    width: 76px;
+}
+
+.ui-pane-body{
+    box-flex: 1;
+    display: -webkit-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+}
+
+.ui-pane-body *{
+    -webkit-box-flex: 0;
+}
+
+.ui-pane-indicator{
+  width: 30px;
+}
