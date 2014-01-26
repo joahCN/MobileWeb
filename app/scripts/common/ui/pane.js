@@ -1,5 +1,5 @@
-angular.module("rcm.components")
-    .directive("pane", ["navigator$", function (navigator$) {
+angular.module("rcm.ui")
+    .directive("pane", function () {
         return {
             restrict: "AE",
             replace: true,
@@ -12,10 +12,11 @@ angular.module("rcm.components")
             },
             link: function (scope, elem, attrs) {
                 elem.on("click", function (){
-                    scope.$apply(function(){
-                        navigator$.push("/something", {});
+                    scope.$emit("switchScreen", {
+                        screen: "mailboxInfo",
+                        next: true
                     });
                 });
             }
         };
-    }]);
+    });

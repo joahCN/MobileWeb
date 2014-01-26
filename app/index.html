@@ -22,7 +22,7 @@
 
     <!-- endbuild -->
   </head>
-  <body>
+  <body ng-controller="NavigationController">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -80,12 +80,25 @@
             <!-- E: Navigation Bar -->
 
             <!-- S: Content -->
-            <div style="position: absolute; top:74px; bottom: 0; width: 100%">
-                <div ng-include="'views/main.html'"></div>
+            <div style="position: absolute; top:74px; bottom: 0; width: 100%" >
+                <div ng-include="template.url"></div>
             </div>
             <!-- E: Content -->
         </div>
 
+        <!-- ACTIVITY INDICATOR -->
+        <div id="loader" style="width: 100%; background-color: rgba(0, 0, 0, 0.3); height: 100%; top: 0; left: 0; position: fixed; z-index:300; display: none;">
+            <div style="position: relative; top: 50%; left: 50%;">
+                <img
+                        id="loader-image"
+                        style="width: 40px; height: 40px; margin-top: -20px; margin-left: -20px"
+                        alt="Loading..."
+                        class="activityIndicator"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAADkElEQVRo3uWZT08TQRTAm4CCUCvS0pTYYkMbKFXDosQ0bQ89lEC41JCGm6Qc8ETgYKKJF7h58MDZcODgwQ+g9yZ8Aj4BX0XfS97qc/JmZrfdWVsl+SVNd7o7P96f2Z1NJBz+lR4Xr4AfxFViHP9g4i0m4fNqHEXOBZHzUZlcHrgGboEboBaVCBybBSrAE6AE3HEp8okkbplMalgR+H6CSfg8cinyVRFBTiMQySoSSNGlyKkgguQHFcEUEiSQrEuRFKsRzuchRIqCxAqmm+uC39JEpaaM69lEqMClaNyPq3tJtXIdYB1RRVZirQ1BpKqJymFQEfic1kRjOooJ5oD3wAWlRjJEK/6jHWtEeoZ2a2y59BucXxlYAu6aRC6BPgNTqGko/BtdVKiIVZGiIRoVXYHD9w8oCzzGqkmkrwEjVBbGH5rWFby3YudoWdaNtHD+exQBT8Ik8s0g06e0Syq/+W7qXobbES5REtJoSSdAPDNdwAsgg8e7SoqdErUQ9ThLkUnzlILPCzhJmwSmm+0CSSr0voVLUzMYoNFgFFYtAh4V/ETYDnZhkelFKJKzCJSNnSrABTzqXn9LpBpl5PFCXaF+vAjPnxTqYMHVip4koV6UEsr5c1Twbm8aR/35eg3YBvYs4JhMDPOZoqjkA5Dyf/QG+BKSFw4l5nE9CkkpMYAE8sHxnXVYkdo/JTJqqZUaKLVYse+NabHP/9dtehpoAG1g2cH55+iBDP/Tk64kUOAM+MhYjliixWhK+2XDXGAZeKcI+LQjvE5REfHBYp4b5sQPgdcagThFfJ6G2mGhOmhbBJCTSLZufl93Eti0yLRIeDJIGp1ZBPB4Q2mVdaIQYuIZ2jmp8FcIVOhNi0zTmG4BJLpqFCj93jIKASU6jJYQnYpNxnQBncARsCiMrysSSJ0dL9Aius0FaZIdhZLhYUuUMYmcKALYraqG1fdYEHnOJnGgkKRjJUFkV/eWiiJYU0Q2bZ2qSxFoW9JjR5BAsSk2WVVkjb0T2RVkNgJ0No8iGskecVaQ+BUNGrMuiKyz41JUOtb9qohX+X1B4kgZYxRh71pUkUZcEmVNNAoDiGQ0UVmMQ+RIkNgXxllFaNxLQWTLtURdE43UECIzmqhU4q6NumFnxipiWFcaLkV2dO1WswUaVERqxxsuRVLsluTYdDsSRoQVvi+DC97MqDxNhhIZ5cdiSSQ3rs/4DSbhdKH7Cfhk1deD4H5mAAAAAElFTkSuQmCC"
+                        />
+        </div>
+        </div>
+        <!-- /ACTIVITY INDICATOR -->
     </div>
 
     <!--[if lt IE 9]>
