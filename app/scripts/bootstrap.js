@@ -23,7 +23,8 @@ require([
     // TODO: May be we can require these following deps in the first level.
     require([
         "scripts/core/NavigatorController",
-        "scripts/common/ui/pane"
+        "scripts/common/ui/pane",
+        "scripts/common/ui/switch"
     ], function () {
 
         var APP_NAME = "RCM";

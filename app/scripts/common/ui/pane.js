@@ -8,12 +8,13 @@ angular.module("rcm.ui")
             scope: {
                 label: '=',
                 hasIndicator: '=',
-                icon: '='
+                icon: '=',
+                screen: "="
             },
             link: function (scope, elem, attrs) {
                 elem.on("click", function (){
                     scope.$emit("switchScreen", {
-                        screen: "mailboxInfo",
+                        screen: scope.screen || "main",
                         next: true
                     });
                 });

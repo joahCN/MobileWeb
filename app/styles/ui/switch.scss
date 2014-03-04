@@ -1,0 +1,105 @@
+/* ==============================
+   Switches
+   =========================== */
+
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+@import "../utilities";
+
+$switchedSubtitle: #000;
+$switchBorder: #e6e6e6;
+$switchInsetShadow: #fff;
+$switchThumbBkgnd: #fff;
+$switchOnColor: #6ee102;
+
+.switch {
+    display: inline-block;
+    border: solid 2px $switchBorder;
+    position: relative;
+    cursor: pointer;
+
+    @include size(54px, 32px);
+    @include sizing;
+    @include border-radius(20px);
+    @include box-shadow(inset 0  0 0 15px $switchInsetShadow);
+    @include animation(
+        $animation-name: switch-animation-off,
+        $duration: 0.65s,
+        $timing-function: ease-in-out,
+        $fill-mode: forward
+    );
+
+    & > em {
+        display: block;
+        background-color: $switchThumbBkgnd;
+        @include size(27px, 27px);
+        @include box-shadow(0 0 2px rgba(0,0,0,.5), 0 5px 6px rgba(0,0,0,0.25));
+        @include border-radius(50%);
+        @include transition(-webkit-transform .1s ease-in-out);
+        @include animation(
+            $animation-name: switch-thumb-animation-off,
+            $duration: 0.45s,
+            $timing-function: ease-in-out,
+            $fill-mode: forwards
+        );
+    }
+
+    & > input {
+        display: none;
+    }
+
+    &.on {
+        border-color: $switchOnColor;
+        box-shadow: inset 0 0 0 15px $switchOnColor;
+        -webkit-animation-name: none;
+        animation-name: none;
+
+        & > em {
+            @include transform(translate3d(23px,0,0));
+            -webkit-transition-duration: .2s;
+            transition-duration: .2s;
+
+            @include animation(
+                $animation-name: switch-thumb-animation,
+                $duration: 0.45s,
+                $timing-function: ease-in-out,
+                $fill-mode: forwards
+            );
+        }
+    }
+}
+
+
+@include key-frames(switch-animation-off) {
+    0% { box-shadow: inset 0 0 0 15px $switchBorder; }
+    49.999% { box-shadow: inset 0 0 0 0 $switchBorder; }
+    50% { box-shadow: inset 0 0 0 0 #fff; }
+    100% { box-shadow: inset 0 0 0 15px #fff; }
+}
+
+@include key-frames(switch-thumb-animation) {
+    0% { width: 27px; }
+    1% { width: 40px; }
+    50% { width: 27px; }
+    100% { width: 27px; }
+}
+
+@include key-frames(switch-thumb-animation-off) {
+    0% { width: 27px; }
+    5% { width: 45px; }
+    50% { width: 27px; }
+    100% { width: 27px; }
+}
+
+
+html[dir=rtl] .switch {
+    & > em {
+        @include transform(translate3d(-23px,0,0));
+    }
+
+    &.on > em {
+        @include transform(translate3d(0,0,0));
+    }
+}

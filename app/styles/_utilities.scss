@@ -1,0 +1,71 @@
+@import "compass/css3/box-sizing";
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin sizing {
+    @include box-sizing(border-box);
+}
+
+/**
+ * CSS3 keyframes:
+ *   @keyframes animationName {
+         keyframe { property list }
+         keyframe { property list }
+         ...
+     }
+
+ * @see: http://www.css3files.com/animation/
+ */
+@mixin key-frames($animation-name) {
+    @-webkit-keyframes $animation-name{
+        @content;
+    }
+    @-moz-keyframes $animation-name{
+        @content;
+    }
+    @keyframes $animation-name {
+        @content;
+    }
+}
+
+/**
+ * CSS3 Animation:
+ *   animation: animationName duration timing-function delay iteration-count direction fill-mode
+ * @see: http://www.css3files.com/animation/
+ */
+@mixin animation (
+    $animation-name,
+    $duration,
+    $timing-function: ease,
+    $delay: 0,
+    $iteration-count: 1,
+    $direction: normal,
+    $fill-mode: forwards)
+{
+    -webkit-animation-name: $animation-name;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-timing-function: $timing-function;
+    -webkit-animation-delay: $delay;
+    -webkit-animation-ireration-count: $iteration-count;
+    -webkit-animation-direction: $direction;
+    -webkit-animation-fill-mode: $fill-mode;
+
+    -moz-animation-name: $animation-name;
+    -moz-animation-duration: $duration;
+    -moz-animation-timing-function: $timing-function;
+    -moz-animation-delay: $delay;
+    -moz-animation-ireration-count: $iteration-count;
+    -moz-animation-direction: $direction;
+    -moz-animation-fill-mode: $fill-mode;
+
+    animation-name: $animation-name;
+    animation-duration: $duration;
+    animation-timing-function: $timing-function;
+    animation-delay: $delay;
+    animation-ireration-count: $iteration-count;
+    animation-direction: $direction;
+    animation-fill-mode: $fill-mode;
+}

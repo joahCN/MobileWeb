@@ -36,8 +36,8 @@ angular.module("rcm.core")
                 // Switch to the screen.
                 $scope.template.url = PATH_TO_SCREENS_VIEWS + data.screen + ".html";
                 $scope.$apply();
-            });
 
-            $location.url(data.screen);
+                $location.url(data.screen);
+            });
         });
     }]);
