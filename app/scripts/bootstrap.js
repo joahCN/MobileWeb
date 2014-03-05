@@ -19,10 +19,12 @@ require([
     angular.module("rcm.ui", []);
     angular.module("rcm.screens", []);
 
-
-    // TODO: May be we can require these following deps in the first level.
     require([
+        // Core
         "scripts/core/NavigatorController",
+        "scripts/core/loaderService",
+
+        // UI Controls
         "scripts/common/ui/pane",
         "scripts/common/ui/switch"
     ], function () {
