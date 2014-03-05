@@ -1,4 +1,5 @@
 @import "compass/css3/box-sizing";
+@import "compass/css3/transform";
 
 @mixin size($width, $height) {
     width: $width;
@@ -68,4 +69,66 @@
     animation-ireration-count: $iteration-count;
     animation-direction: $direction;
     animation-fill-mode: $fill-mode;
+}
+
+
+/**
+ * =========================
+ * Slide
+ * =========================
+ */
+$translateTo0: translate3d(0, 0, 0);
+$translateToX100Negative: translate3d(-100%,0,0);
+$translateToX100: translate3d(100%, 0, 0);
+$translateToY100Negative: translate3d(0, 100%, 0);
+$translateToY100:translate3d(100%, 0, 0);
+
+/**
+ * Slide Horizontally
+ */
+@include key-frames(slideInFromRight) {
+    0%   { @include transform($translateToX100); }
+    100% { @include transform($translateTo0); }
+}
+
+@include key-frames(slideOutToRight) {
+    0%   { @include transform($translateTo0); }
+    100% { @include transform($translateToX100); }
+}
+
+@include key-frames(slideInFromLeft) {
+    0%   { @include transform($translateToX100Negative); }
+    100% { @include transform($translateTo0); }
+}
+
+@include key-frames(slideOutToLeft) {
+    0%   { @include transform($translateTo0); }
+    100% { @include transform($translateToX100Negative); }
+}
+
+/**
+ * Slide Vertically
+ */
+@include key-frames(slideInFromTop) {
+    0%   { @include transform($translateToY100); }
+    100% { @include transform($translateTo0); }
+}
+@include key-frames(slideOutToTop) {
+    0%   { @include transform($translateTo0); }
+    100% { @include transform($translateToY100); }
+}
+@include key-frames(slideInFromBottom) {
+    0%   { @include transform($translateToY100Negative); }
+    100% { @include transform($translateTo0); }
+}
+@include key-frames(slideOutToBottom) {
+    0%   { @include transform($translateTo0); }
+    100% { @include transform($translateToY100Negative); }
+}
+
+@mixin slide($slide-name, $slide-duration: .3s) {
+    @include animation(
+        $animation-name: $slide-name,
+        $duration: $slide-duration
+    );
 }

@@ -1,0 +1,28 @@
+@import "utilities";
+
+
+.slide-in {
+    @include slide(slideInFromRight);
+}
+.slide-in-reverse {
+    @include slide(slideOutToRight);
+}
+.slide-out {
+    @include slide(slideOutToLeft);
+}
+.slide-out-reverse {
+    @include slide(slideInFromLeft);
+}
+
+.slide-up-in {
+    @include slide(slideInFromTop);
+}
+.slide-up-in-reverse {
+    @include slide(slideOutToTop);
+}
+.slide-up-out {
+    @include slide(slideOutToBottom);
+}
+.slide-up-out-reverse {
+    @include slide(slideInFromBottom);
+}
