@@ -1,10 +1,10 @@
 define(function () {
     angular.module("rcm.screens")
-        .controller("screens.main", function ($scope) {
+        .controller("screens.error", function ($scope) {
 
         });
 
     return {
-        title: "UI - Switch"
+        title: "Error"
     };
 });
