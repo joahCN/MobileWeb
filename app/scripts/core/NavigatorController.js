@@ -1,43 +1,99 @@
 angular.module("rcm.core")
-    .controller("NavigationController", ["$scope", "$location", function ($scope, $location) {
-        var screenStack = {};
-        var PATH_TO_SCREENS = "scripts/screens/";
-        var PATH_TO_SCREENS_VIEWS = "views/screens/";
+    .controller("NavigationController", [
+        "$scope", "$location", "loader$", "$q", "$element", "$log",
+        function ($scope, $location, loader$, $q, $element, $log) {
+        var defaultScreen = "/main";
+        var errorScreen = "/error";
+        var screenStatck = [];
+        var retryCount = 0;
+        var contentWrapper = $element.find("#content");
 
-        $scope.template = {
-            url: "views/screens/main.html"
-        };
+        init();
+        navigator();
 
-        $scope.$on("$locationChangeStart", function () {
+        function init() {
+            $scope.template = {
+                url: getScreenViewPath(defaultScreen)
+            };
+        }
 
-        });
+        function navigator() {
+            $scope.$on("$locationChangeStart", function () {});
 
-        $scope.$on("$locationChangeSuccess", function () {
+            $scope.$on("$locationChangeSuccess", function () {
 
-        });
+                navigate($location.path() || defaultScreen);
+            });
+
+            $scope.$on("switchScreen", function(event, data) {
+                $location.url(data.screen);
+                $scope.$apply();
+            });
+        }
+
+        function navigate(screenName) {
+            $scope.template.url = getScreenViewPath("/blank");
+            contentWrapper.addClass("slide-in");
+            loader$.show();
+            screenName = !screenName ? errorScreen : (screenName === "/" ? defaultScreen : screenName);
+            var templateFile = getScreenViewPath(screenName);
+            var deferred = $q.defer();
 
 
-        $scope.$on("switchScreen", function(event, data) {
-            console.log("Navigator to screen: " + data.screen);
-            screenStack[screen] = data.screen;
+            require([
+                getScreenControllerPath(screenName),
+                "text!" + templateFile
+            ], function (screenInfo) {
+                loader$.hide();
 
-            // Show loading indicator.
-            $("#loader").show();
+                $scope.template.url = templateFile;
+                $location.url(screenName);
+                renderScreenTitle(screenInfo.title);
+                renderLeftButton();
+                renderRightButton();
 
 
-            require([PATH_TO_SCREENS + data.screen], function (screen) {
-                if (!screen) {
-                    // ERROR: Request screen doest not exist.
+                $scope.$apply(function () {
+                    deferred.resolve();
+                });
+
+                deferred.promise.then(function () {
+                    setTimeout(function () {
+                        contentWrapper.removeClass("slide-in");
+                    }, 2000);
+                });
+
+            }, function (err) {
+                $log.error("Error:", err);
+                loader$.hide();
+
+                if (isScriptError() && retryCount <= 3) {
+                    navigate(errorScreen);
+                    retryCount++;
                 }
 
-                // Hide loading indicator.
-                $("#loader").hide();
 
-                // Switch to the screen.
-                $scope.template.url = PATH_TO_SCREENS_VIEWS + data.screen + ".html";
-                $scope.$apply();
-
-                $location.url(data.screen);
+                function isScriptError() {
+                    return err.requireType === "scripterror";
+                }
             });
-        });
+
+            function renderScreenTitle(title) {
+                $("#navigationBar").html(title);
+            }
+            function renderLeftButton(text, callback) {
+
+            }
+            function renderRightButton(text, callback) {
+
+            }
+        }
+
+        function getScreenControllerPath(screen) {
+            return "scripts/screens" + screen;
+        }
+
+        function getScreenViewPath(screen) {
+            return "views/screens" + screen + ".html";
+        }
     }]);
