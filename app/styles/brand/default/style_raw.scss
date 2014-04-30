@@ -5,7 +5,7 @@
 @import "compass/css3/box-shadow";
 
 body {
-    background: #f6f5f6;
+    background: white;
 }
 
 input::-webkit-input-placeholder {
@@ -60,8 +60,12 @@ input:focus::-webkit-input-placeholder {
 }
 
 .navigationBar {
-    @include background(#2E84A0 linear-gradient(top, #12435e, #093b56));
-    //background: #073a55;
+    background-color: $navigationBarBgColor;
+    border-bottom: 1px solid $navigationBarBottomBorderColor;
+}
+
+.navigationBarHeader {
+    color: $navigationBarHeaderFontColor;
 }
 
 .header, .headerTop {
@@ -108,23 +112,19 @@ ul.centeredButtons {
 
 .leftButton,
 .rightButton {
-    color: white;
+    color: $leftRightButtonFontColor;
 }
 .leftButton {
-    border-right: 1px solid #2a6a8c;
 }
     .leftButton div {
-        border-right: 1px solid #052334;
     }
 
 .rightButton,
 .rightButtonDisabled {
-    border-left: 1px solid #052334;
     margin-left: -1px;
 }
     .rightButton div,
     .rightButtonDisabled div {
-        border-left: 1px solid #2a6a8c;
     }
 
 .rightButtonDisabled {
@@ -394,10 +394,10 @@ ul.centeredButtons {
 }
 
 .screenMenuButton {
-    background: #d1e3ec;
-    box-shadow: 0 -1px 0 #90b2c4;
-    border-top: 1px solid #fff;
-    color: $valueColor;
+    background: $screenMenuButtonBgColor;
+    box-shadow: 0 -1px 0 $screenMenuButtonBorderBottomColor;
+    color: $screenMenuButtonFontColor;
+    font-size: 18px;
 }
 
 .detailsButton {

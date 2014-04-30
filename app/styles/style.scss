@@ -1,24 +1,39 @@
 @import "style_raw.scss";
+@import "utilities.scss";
+@import "ui/switch.scss";
+@import "ui/pane.scss";
+@import "slide.scss";
 
-.ui-pane {
-    display: box;
-}
-.ui-pane-icon{
-    width: 76px;
-}
-
-.ui-pane-body{
-    box-flex: 1;
-    display: -webkit-flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-pack: center;
-    -webkit-box-align: center;
+#content-wrap {
+    height: 100%;
 }
 
-.ui-pane-body *{
-    -webkit-box-flex: 0;
+.invisible {
+    visibility: hidden;
 }
 
-.ui-pane-indicator{
-  width: 30px;
+#navigationBarWrapper {
+    display:block;
+    width:100%;
+    position: fixed;
+    top:0;
+    z-index: 100;
+
+    #navigationToolBar {
+        //@include sizing;
+        display: -webkit-flex;
+
+        .navigationBar-titleWrapper{
+            -webkit-flex: 1;
+        }
+
+        .navigationBar-leftButton-wrapper,
+        .navigationBar-rightButton-wrapper{
+            width: 20%;
+        }
+    }
+}
+
+#content {
+    -webkit-backface-visibility: none; // http://css-tricks.com/almanac/properties/b/backface-visibility/
 }

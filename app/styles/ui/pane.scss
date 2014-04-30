@@ -1,0 +1,46 @@
+.pane-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.ui-pane {
+    display: flex;
+    flex: 1;
+
+    .ui-pane-icon {
+        display: flex;
+        flex: 1;
+        padding: 5%;
+
+        img {
+            display: block;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .ui-pane-body {
+        display: flex;
+        flex: 3;
+
+        .ui-pane-body-content {
+            margin: auto 0;
+            padding: 0 10px;
+
+            .ui-pane-headline,
+            .ui-pane-label {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .ui-pane-indicator {
+        flex: 1;
+        background: url("/images/chevron.svg") center center no-repeat;
+    }
+}

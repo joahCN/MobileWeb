@@ -5,6 +5,6 @@ define(function () {
         });
 
     return {
-        title: "Main"
+        title: "Phone System"
     };
 });
