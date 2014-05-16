@@ -37,9 +37,11 @@ angular.module("rcm.core")
             loader$.show();
             screenName = !screenName ? errorScreen : (screenName === "/" ? defaultScreen : screenName);
             var templateFile = getScreenViewPath(screenName);
-            var deferred = $q.defer();
-
-
+            $scope.template.url = templateFile;
+            $location.url(screenName);
+            loader$.hide();
+            //var deferred = $q.defer();
+            /*
             require([
                 getScreenControllerPath(screenName),
                 "text!" + templateFile
@@ -77,6 +79,7 @@ angular.module("rcm.core")
                     return err.requireType === "scripterror";
                 }
             });
+            */
 
             function renderScreenTitle(title) {
                 $("#navigationBar").html(title);

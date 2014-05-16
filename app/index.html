@@ -96,11 +96,49 @@
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="bower_components/requirejs/require.js" data-main="scripts/bootstrap"></script>
+    <script>
+        // Declare Angular modules of our application.
+        angular.module("rcm.core", []);
+        angular.module("rcm.ui", []);
+        angular.module("rcm.screens", []);
+    </script>
+
+    <script src="scripts/core/loaderService.js"></script>
+    <script src="scripts/core/navigatorController.js"></script>
+
+    <script src="scripts/common/ui/pane.js"></script>
+    <script src="scripts/common/ui/switch.js"></script>
+    <script src="scripts/common/ui/select_list.js"></script>
+
+    <script src="scripts/screens/main.js"></script>
+    <script src="scripts/screens/mailboxInfo.js"></script>
+    <script src="scripts/screens/error.js"></script>
+    <script src="scripts/screens/ui/switch.js"></script>
+    <script src="scripts/screens/ui/select_list.js"></script>
+    <script>
+        var APP_NAME = "RCM";
+
+        angular.module(APP_NAME, [
+            "rcm.core",
+            "rcm.ui",
+            "rcm.screens"
+        ])
+                .config(function($locationProvider) {
+
+                    // Use the hashbang mode.
+                    $locationProvider.hashPrefix('!');
+                });
+
+        // Bootstrap the application.
+        $(document).ready(function(){
+            angular.bootstrap($("body"), [APP_NAME]);
+        });
+    </script>
     <!-- endbuild -->
 
 </body>

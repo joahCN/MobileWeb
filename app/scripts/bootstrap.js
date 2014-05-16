@@ -21,12 +21,13 @@ require([
 
     require([
         // Core
-        "scripts/core/NavigatorController",
+        "core/navigatorController",
         "scripts/core/loaderService",
 
         // UI Controls
         "scripts/common/ui/pane",
-        "scripts/common/ui/switch"
+        "scripts/common/ui/switch",
+        "scripts/common/ui/select_list"
     ], function () {
 
         var APP_NAME = "RCM";
