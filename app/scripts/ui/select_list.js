@@ -3,7 +3,7 @@ angular.module("rcm.ui")
         return {
             restrict: "EA",
             replace: true,
-            templateUrl: "/views/partials/select_list.html",
+            templateUrl: "/views/ui/select_list.html",
             scope: {
                 items: "=source"
             },

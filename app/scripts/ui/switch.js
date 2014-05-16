@@ -7,7 +7,7 @@ angular.module("rcm.ui")
         return {
             restrict: "E",
             replace: true,
-            templateUrl: "/views/partials/switch.html",
+            templateUrl: "/views/ui/switch.html",
             scope: {
                 name: "=",
                 onSwitch: "&"
