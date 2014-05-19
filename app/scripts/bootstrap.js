@@ -1,51 +1,53 @@
-"use strict";
+var APP_NAME = "RCM";
 
-require.config({
-    baseUrl: "",
-    paths: {
-        "vendor": "bower_components",
-        "jquery": "bower_components/jquery/jquery",
-        "text": "bower_components/requirejs-text/text"
-    }
-});
+angular.module(APP_NAME, [
+    "ngRoute",
+    "rcm.core",
+    "rcm.ui",
+    "rcm.screens"
+])
+    .config(function($locationProvider, $routeProvider) {
+        // Use the hashbang mode.
+        $locationProvider.hashPrefix('!');
 
-require([
-    "jquery",
-    "vendor/angular/angular"
-], function($){
-
-    // Declare Angular modules of our application.
-    angular.module("rcm.core", []);
-    angular.module("rcm.ui", []);
-    angular.module("rcm.screens", []);
-
-    require([
-        // Core
-        "core/navigatorController",
-        "scripts/core/loaderService",
-
-        // UI Controls
-        "scripts/common/ui/pane",
-        "scripts/common/ui/switch",
-        "scripts/common/ui/select_list"
-    ], function () {
-
-        var APP_NAME = "RCM";
-
-        angular.module(APP_NAME, [
-            "rcm.core",
-            "rcm.ui",
-            "rcm.screens"
-        ])
-            .config(function($locationProvider) {
-
-                // Use the hashbang mode.
-                $locationProvider.hashPrefix('!');
-            });
-
-        // Bootstrap the application.
-        $(document).ready(function(){
-            angular.bootstrap($("body"), [APP_NAME]);
+        $routeProvider
+            .when("/", {
+                controller: "ScreenMain",
+                templateUrl: "/views/screens/main.html"
+            })
+            .when("/screen/ui_components", {
+                templateUrl: "/views/screens/ui_components.html"
+            })
+            .when("/screen/ui/switch", {
+                controller: "screens.switch",
+                templateUrl: "/views/screens/ui/switch.html"
+            })
+            .otherwise({
+                redirectTo: "/"
+            })
+    })
+    .run(function($rootScope, $log){
+        var lastScreen = {
+            originalPath: ""
+        };
+        var animateClassNameForBack = "slide-out-reverse";
+        var animateClassNameForNext = "slide-in";
+        $rootScope.$on("$routeChangeStart", function (event, next, current){
+            $log.log("Route change start");
+            $rootScope.containerAnimateClassName = lastScreen.originalPath === next.originalPath ?
+                animateClassNameForBack :
+                animateClassNameForNext;
+        });
+        $rootScope.$on("$routeChangeSuccess", function (event, current, previous){
+            $log.log("Route change success");
+            lastScreen = previous;
+        });
+        $rootScope.$on("$routeChangeError", function (){
+            $log.log("Route Error!")
         });
     });
+
+// Bootstrap the application.
+$(document).ready(function(){
+    angular.bootstrap($("body"), [APP_NAME]);
 });

@@ -1,5 +1,5 @@
 angular.module("rcm.ui")
-    .directive("pane", function () {
+    .directive("pane", function ($location) {
         return {
             restrict: "AE",
             replace: true,
@@ -13,10 +13,14 @@ angular.module("rcm.ui")
             },
             link: function (scope, elem, attrs) {
                 elem.on("click", function (){
+                    $location.path("/" + scope.screen);
+                    scope.$apply();
+                    /*
                     scope.$emit("switchScreen", {
                         screen: scope.screen,
                         next: true
                     });
+                    */
                 });
             }
         };

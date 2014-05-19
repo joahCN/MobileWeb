@@ -1,4 +1,3 @@
 angular.module("rcm.screens")
-    .controller("screens.main", function ($scope) {
-
+    .controller("ScreenMain", function ($scope, $location) {
     });
