@@ -1,5 +1,5 @@
     angular.module("rcm.screens")
-        .controller("ScreenSwitch", function ($scope) {
-
+        .controller("ScreenControllerSwitch", function ($scope) {
+            console.log("Screen Controller: Switch");
         });
 

@@ -15,33 +15,33 @@ angular.module(APP_NAME, [
                 controller: "ScreenMain",
                 templateUrl: "/views/screens/main.html"
             })
-            .when("/screen/ui_components", {
-                templateUrl: "/views/screens/ui_components.html"
-            })
-            .when("/screen/ui/switch", {
-                controller: "screens.switch",
-                templateUrl: "/views/screens/ui/switch.html"
+            .when("/screen/:screen*", {
+                templateUrl: function (params) {
+                    return "/views/screens/" + params.screen + ".html";
+                }
             })
             .otherwise({
                 redirectTo: "/"
             })
     })
     .run(function($rootScope, $log){
-        var lastScreen = {
-            originalPath: ""
-        };
         var animateClassNameForBack = "slide-out-reverse";
         var animateClassNameForNext = "slide-in";
-        $rootScope.$on("$routeChangeStart", function (event, next, current){
+
+        $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $log.log("Route change start");
-            $rootScope.containerAnimateClassName = lastScreen.originalPath === next.originalPath ?
+            $log.log(" - Current screen: ", current);
+            $log.log(" - Next screen: ", next);
+
+            $rootScope.containerAnimateClassName = true ?
                 animateClassNameForBack :
                 animateClassNameForNext;
         });
+
         $rootScope.$on("$routeChangeSuccess", function (event, current, previous){
             $log.log("Route change success");
-            lastScreen = previous;
         });
+
         $rootScope.$on("$routeChangeError", function (){
             $log.log("Route Error!")
         });

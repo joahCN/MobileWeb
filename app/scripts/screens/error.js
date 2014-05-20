@@ -1,4 +1,4 @@
     angular.module("rcm.screens")
-        .controller("ScreensError", function ($scope) {
-
+        .controller("ScreenControllerError", function ($scope) {
+            console.log("Screen Controller: Error");
         });
