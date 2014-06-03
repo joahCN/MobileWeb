@@ -1,4 +1,4 @@
-angular.module("rcm.ui")
+angular.module("RCM.ui")
     .directive("pane", function ($location) {
         return {
             restrict: "AE",
@@ -15,12 +15,6 @@ angular.module("rcm.ui")
                 elem.on("click", function (){
                     $location.path("/" + scope.screen);
                     scope.$apply();
-                    /*
-                    scope.$emit("switchScreen", {
-                        screen: scope.screen,
-                        next: true
-                    });
-                    */
                 });
             }
         };

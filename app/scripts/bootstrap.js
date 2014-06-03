@@ -2,9 +2,10 @@ var APP_NAME = "RCM";
 
 angular.module(APP_NAME, [
     "ngRoute",
-    "rcm.core",
-    "rcm.ui",
-    "rcm.screens"
+    "RCM.core",
+    "RCM.ui",
+    "RCM.common",
+    "RCM.screens"
 ])
     .config(function($locationProvider, $routeProvider) {
         // Use the hashbang mode.
@@ -13,7 +14,7 @@ angular.module(APP_NAME, [
         $routeProvider
             .when("/", {
                 controller: "ScreenMain",
-                templateUrl: "/views/screens/main.html"
+                template: "" //angular does not invoke controller if no template provided.
             })
             .when("/screen/:screen*", {
                 templateUrl: function (params) {
@@ -24,26 +25,38 @@ angular.module(APP_NAME, [
                 redirectTo: "/"
             })
     })
-    .run(function($rootScope, $log){
-        var animateClassNameForBack = "slide-out-reverse";
-        var animateClassNameForNext = "slide-in";
+    .run(function($rootScope, $location, $log, navigator$){
+        var ANIMATION_CLASS_NAME = {
+            BACK: "slide-out-reverse",
+            NEXT: "slide-in"
+        };
+
+        $rootScope.containerAnimateClassName = ANIMATION_CLASS_NAME.NEXT;
 
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            $log.log("Route change start");
-            $log.log(" - Current screen: ", current);
-            $log.log(" - Next screen: ", next);
-
-            $rootScope.containerAnimateClassName = true ?
-                animateClassNameForBack :
-                animateClassNameForNext;
+            //$log.log("Route change start");
+            //$log.log(" - Current route: ", current);
+            //$log.log(" - Next route: ", next);
         });
 
-        $rootScope.$on("$routeChangeSuccess", function (event, current, previous){
-            $log.log("Route change success");
+        $rootScope.$on("$routeChangeSuccess", function (event, current, previous) {
+            //$log.log("Route change success");
+            //$log.log(" - Previous route: ", previous);
+            //$log.log(" - Current route: ", current);
+
+            if (navigator$.isBack()) {
+                $rootScope.containerAnimateClassName = ANIMATION_CLASS_NAME.BACK;
+                navigator$.pop();
+            } else {
+                $rootScope.containerAnimateClassName = ANIMATION_CLASS_NAME.NEXT;
+                navigator$.push();
+            }
+
+            //$log.log("History stack: ", navigator$.get());
         });
 
-        $rootScope.$on("$routeChangeError", function (){
-            $log.log("Route Error!")
+        $rootScope.$on("$routeChangeError", function () {
+            //$log.log("Route Error!")
         });
     });
 

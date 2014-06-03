@@ -1,22 +1,32 @@
-<div class="container">
-    <div class="errorMessage">
-        <div style="position: absolute;" class="errorIcon"></div>
-        <div style="vertical-align: top;margin-left: 60px;">
-            <div id="header" style="margin-bottom: 10px;"></div>
-            <div id="errorMessages">404 - The Screen does not exist.</div>
+<screen ng-controller="ScreenError">
+    <screen-navigation>
+        <left-button ng-click="back()">Back</left-button>
+        <screen-title>Error</screen-title>
+        <right-button></right-button>
+    </screen-navigation>
+
+    <screen-content>
+        <div class="errorMessage">
+            <div style="position: absolute;" class="errorIcon"></div>
+            <div style="vertical-align: top;margin-left: 60px;">
+                <div id="header" style="margin-bottom: 10px;"></div>
+                <div id="errorMessages">Error - The Screen does not exist.</div>
+            </div>
         </div>
-    </div>
-    <div id='returnButton'  style="margin-top:20px">
-        <div style="display: table;" class="actionButtonBlock">
-            <div style="display: table-cell; vertical-align: middle; text-align: center; width: 100%">
-                <div id="errorPage-returnButton-actionButton-button" class="actionButton">
-                    <div style="display: table; width: 100%; height: 100%">
-                        <div id="errorPage-returnButton-actionButton-text" style="display:table-cell; vertical-align: middle;">
-                            <a href="/#!/">Return to Home Page</a>
+        <div id='returnButton'  style="margin-top:20px">
+            <div style="display: table;" class="actionButtonBlock">
+                <div style="display: table-cell; vertical-align: middle; text-align: center; width: 100%">
+                    <div id="errorPage-returnButton-actionButton-button" class="actionButton">
+                        <div style="display: table; width: 100%; height: 100%">
+                            <div id="errorPage-returnButton-actionButton-text" style="display:table-cell; vertical-align: middle;">
+                                <a href="/#!/">Return to Home Page</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </screen-content>
+
+    <screen-aside></screen-aside>
+</screen>

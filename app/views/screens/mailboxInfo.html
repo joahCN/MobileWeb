@@ -1,71 +1,30 @@
-<div class="animationFixer">&#160;</div>
-<div id="mailboxHeader"></div>
-<div class="container screen_mailboxInfo" style="padding-top: 0">
-    <div id="header" style="margin-top:11px;"></div>
-    <div id="tabBarPropertiesSet" style="margin-bottom: 20px;"></div>
-    <div id="tabExtensionInfo">
-        <div>
-            <div id="preloader"></div>
-            <div id="props"  class="propList">
-                <div id="extNumber"></div>
-                <div id="extNumberReadOnly"></div>
-                <div id="firstName"></div>
-                <div id="lastName"></div>
-                <div id="pronouncedName" style="padding-right: 13px;"></div>
-                <div id="phoneNumber"></div>
-                <div id="email"></div>
-                <div id="userType"></div>
-            </div>
-        </div>
-        <div id="membersInfo" style="margin-top:10px">
-            <div id="members" _loc="DEPARTMENT_MEMBERS" ></div>
-            <div id="membersAvailability" _loc="MEMBERS_AVAILABILITY"></div>
-        </div>
-        <div id="membersPreloader"></div>
-        <div id="mailboxAddress" style="margin-top:10px" _loc='ADDRESS'></div>
-        <div id="businessHours" style="margin-top:10px"></div>
-        <div id="securitySettings" style="margin-top:10px"></div>
-        <div id="regionalSettings" style="margin-top:10px" _loc="REGIONAL_SETTINGS"></div>
-        <div id="status" style="margin-top:10px"></div>
-        <div id="statusNoSwichBnt" style="margin-top:10px"></div>
-        <div style="margin-top:20px">
-            <div id="resendWelcomeEmail"></div>
-            <div id="delete" style="margin-top:10px;"></div>
-        </div>
-    </div>
-    <div id="tabPhones" >
-        <div id="fcc_info" style="display: none;">
-            <span class="header" _loc="CONFERENCE_NUMBER" style="padding-right: 0px;"></span>
-            <span id="fccConfNumber" class="text" style="padding-left: 0px; padding-right: 0px;"></span><br/>
-            <span class="header" _loc="HOST_CODE" style="padding-right: 0px;"></span>
-            <span id="fccHostCode" class="text" style="padding-left: 0px; padding-right: 0px;"></span><br/>
-            <span class="header" _loc="PART_CODE" style="padding-right: 0px;"></span>
-            <span id="fccPartCode" class="text" style="padding-left: 0px; padding-right: 0px;"></span>
-            <div id="fccInvite" _loc="FCC_INVITE" style="padding-top: 10px;"></div>
-        </div>
-        <div class="header" _loc="DIRECT_NUMBERS"></div>
-        <div id="directNumbers"></div>
-        <div id="commentNoDirectNumbers" _loc="COMMENT_NO_DIRECT_NUMBERS" class="text"></div>
-        <div id="addDirectNumber" style="margin-top:10px;"></div>
+<screen ng-controller="ScreenMailboxInfo">
 
-        <div id="phoneGroup">
-            <div class="header" _loc="PHONES"></div>
-            <div id="phones"></div>
+    <screen-navigation>
+        <left-button ng-click="logout()">Logout</left-button>
+        <screen-title>MailboxInfo</screen-title>
+        <right-button></right-button>
+    </screen-navigation>
 
-            <div id="commentNoPhones" _loc="COMMENT_NO_PHONES" class="text"></div>
-            <div id="addPhone" style="margin-top:10px;" _loc="ADD_PHONE"></div>
-            <div id="presence" style="margin-top:20px" _loc="PRESENCE"></div>
-            <div id="intercom" style="margin-top:20px" _loc="INTERCOM"></div>
+    <screen-content>
+        <div class="pane-wrap">
+            <pane
+                    label="'test'"
+                    has-indicator="true"
+                    icon="'/images/ps_company_number.svg'">
+                User Info
+            </pane>
+
+            <pane icon="'/images/ps_auto_receptionist.svg'">
+                Screening, Greeting & Hold Music
+            </pane>
+
+            <pane icon="'/images/record.svg'" screen="'screen/ui_components'">
+                UI Components
+            </pane>
         </div>
+    </screen-content>
 
-        <div id="forwardedNumbersBlock">
-            <div class="header" _loc="FORWARDED_NUMBERS"></div>
-            <div id="forwardedNumbers"></div>
-        </div>
-    </div>
-</div>
+    <screen-aside></screen-aside>
 
-<div id="help" style="display: none;">
-    <h1 _loc="HELP_USER_TYPE"></h1>
-    <p id="content"></p>
-</div>
+</screen>

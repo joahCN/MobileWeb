@@ -2,7 +2,7 @@
  * Example:
  * <switch on name="sleep" id="aSwitch"></switch>
  */
-angular.module("rcm.ui")
+angular.module("RCM.ui")
     .directive("switch", function () {
         return {
             restrict: "E",

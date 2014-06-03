@@ -1,4 +1,4 @@
-angular.module("rcm.core")
+angular.module("RCM.core")
     .controller("NavigationController", [
         "$scope",
         "$location",

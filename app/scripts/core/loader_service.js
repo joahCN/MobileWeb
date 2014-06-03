@@ -1,4 +1,4 @@
-angular.module("rcm.core")
+angular.module("RCM.core")
     .factory("loader$", ["$rootScope", function ($rootScope) {
         var loader = $("#loader");
 

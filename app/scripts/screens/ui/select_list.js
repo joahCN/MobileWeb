@@ -1,10 +1,10 @@
-    angular.module("rcm.screens")
-        .controller("ScreenSelectList", function ($scope) {
-            console.log("Screen Controller: SelectList");
+angular.module("RCM.screens")
+    .controller("ScreenControllerSelectList", function ($scope) {
+        console.log("Screen Controller: SelectList");
 
-            $scope.listItems = [
-                {name: "Apple", checked: true},
-                {name: "Banana", checked: false}
-            ];
-        });
+        $scope.listItems = [
+            {name: "Apple", checked: true},
+            {name: "Banana", checked: false}
+        ];
+    });
 

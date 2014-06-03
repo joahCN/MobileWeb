@@ -1,0 +1,45 @@
+.screen-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .screen {
+        .screen-navigation{
+            display:block;
+            width:100%;
+            position: fixed;
+            top:0;
+            z-index: 100;
+            border-bottom: 1px solid #ccc;
+
+            .screen-navigation-bar {
+                display: -webkit-flex;
+                height: 44px;
+
+                .navigationBar-titleWrapper{
+                    -webkit-flex: 2;
+                }
+
+                .navigationBar-leftButton-wrapper,
+                .navigationBar-rightButton-wrapper{
+                    width: 20%;
+                }
+            }
+        }
+
+
+        .screen-content{
+            position: absolute;
+            top: 45px;
+            bottom: 0;
+            width: 100%;
+            -webkit-backface-visibility: hidden; // http://css-tricks.com/almanac/properties/b/backface-visibility/
+        }
+
+        .screen-aside{}
+    }
+}
+
+.invisible {
+    visibility: hidden;
+}

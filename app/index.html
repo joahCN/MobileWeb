@@ -23,63 +23,24 @@
   </head>
   <body>
     <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <p class="browsehappy">
+          You are using an <strong>outdated</strong> browser.
+          Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+      </p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div id="screenWrapper" style="display: block; width:100%; height: 100%; min-width: 220px; min-height: 420px; position: absolute; ">
-        <div style="position: relative; width: 100%; height: 100%;">
+    <div id="screenWrap" class="screen-wrap" ng-view
+         ng-class="containerAnimateClassName"></div>
 
-            <!-- S: Navigation Bar -->
-            <div id="navigationBarWrapper" class="navigationBar">
-                <div id="navigationToolBar">
-                    <!-- LEFT BUTTON -->
-                    <div class="navigationBar-leftButton-wrapper">
-                        <div id="navigationBar-leftButton">
-                            <div id="navigationBar-leftButton-button" class="leftButton">
-                                <div id="navigationBar-leftButton-text" style="padding:0 5px;">Back</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /LEFT BUTTON -->
-
-                    <div class="navigationBar-titleWrapper">
-                        <div style="position: relative;margin: 0 10%;">
-                            <div class="navigationBarHeader">
-                                <div id="navigationBar" class="ellipsis"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT BUTTON -->
-                    <div class="navigationBar-rightButton-wrapper">
-                        <div id="navigationBar-rightButton">
-                            <div id="navigationBar-rightButton-button" class="rightButton">
-                                <div id="navigationBar-rightButton-text" class="ellipsis" style="padding: 0 10%;width: 80%;">Save</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /RIGHT BUTTON -->
-                </div>
-            </div>
-            <!-- E: Navigation Bar -->
-
-            <!-- S: Content -->
-            <div id="content" style="position: absolute; top:44px; bottom: 0; width: 100%" >
-                <div  id="content-wrap" ng-view ng-class="containerAnimateClassName"></div>
-            </div>
-            <!-- E: Content -->
+    <!-- ACTIVITY INDICATOR -->
+    <div id="loader" class="loader">
+        <div class="loader-image-container">
+            <img id="loader-image" class="loader-image activityIndicator"
+                 alt="Loading..." src="/images/activity_indicator.png" />
         </div>
-
-        <!-- ACTIVITY INDICATOR -->
-        <div id="loader" class="loader">
-            <div class="loader-image-container">
-                <img id="loader-image" class="loader-image activityIndicator"
-                     alt="Loading..." src="/images/activity_indicator.png" />
-            </div>
-        </div>
-        <!-- /ACTIVITY INDICATOR -->
     </div>
+    <!-- /ACTIVITY INDICATOR -->
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -96,26 +57,38 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script>
-        // Declare Angular modules of our application.
-        angular.module("rcm.core", []);
-        angular.module("rcm.ui", []);
-        angular.module("rcm.screens", []);
-    </script>
 
-    <script src="scripts/core/loaderService.js"></script>
+    <!-- modules -->
+    <script src="scripts/module.js"></script>
+
+    <!-- services -->
+    <script src="scripts/core/loader_service.js"></script>
+    <script src="scripts/core/session_service.js"></script>
+    <script src="scripts/core/navigator.js"></script>
+
+    <!-- directives -->
+    <script src="scripts/common/screen.js"></script>
+    <script src="scripts/common/screen_navigation.js"></script>
+    <script src="scripts/common/screen_navigation/screen_title.js"></script>
+    <script src="scripts/common/screen_navigation/left_button.js"></script>
+    <script src="scripts/common/screen_navigation/right_button.js"></script>
+    <script src="scripts/common/screen_content.js"></script>
+    <script src="scripts/common/screen_aside.js"></script>
 
     <script src="scripts/ui/pane.js"></script>
     <script src="scripts/ui/switch.js"></script>
     <script src="scripts/ui/select_list.js"></script>
 
+    <!-- screen controllers -->
     <script src="scripts/screens/main.js"></script>
+    <script src="scripts/screens/login.js"></script>
     <script src="scripts/screens/mailboxInfo.js"></script>
     <script src="scripts/screens/error.js"></script>
+    <script src="scripts/screens/ui_components.js"></script>
     <script src="scripts/screens/ui/switch.js"></script>
     <script src="scripts/screens/ui/select_list.js"></script>
+    
     <script src="scripts/bootstrap.js"></script>
     <!-- endbuild -->
-
-</body>
+  </body>
 </html>

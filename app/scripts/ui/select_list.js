@@ -1,4 +1,4 @@
-angular.module("rcm.ui")
+angular.module("RCM.ui")
     .directive("selectList", function () {
         return {
             restrict: "EA",
