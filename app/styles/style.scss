@@ -1,9 +1,9 @@
-@import "style_raw.scss";
-@import "utilities.scss";
+@import "shared/style_raw.scss";
+@import "include/utilities.scss";
+@import "include/slide.scss";
 @import "ui/switch.scss";
 @import "ui/pane.scss";
 @import "ui/select_list.scss";
-@import "slide.scss";
 
 @import "include/loader";
 @import "include/layout";
