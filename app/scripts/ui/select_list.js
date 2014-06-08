@@ -11,7 +11,7 @@ angular.module("RCM.ui")
                 var items = elem.find("li");
                 items.on("click", function () {
                     items.siblings.removeClass("select-list-selected");
-                    $(this).addClass("select-list-selected");
+                    angular.element(this).addClass("select-list-selected");
                 });
             }
         };

@@ -1,4 +1,4 @@
-angular.module("RCM.core")
+angular.module("RCM.services")
     .factory("navigator$", function ($location) {
         var STORAGE_KEY = "historyStack";
         var historyStack = [];
