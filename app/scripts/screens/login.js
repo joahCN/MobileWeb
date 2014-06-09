@@ -3,6 +3,7 @@ angular.module("RCM.screens")
         console.log("Screen Controller: Login");
 
         initScreenHeader();
+        initScreenContent();
 
         function initScreenHeader() {
             var header = {
@@ -11,6 +12,30 @@ angular.module("RCM.screens")
 
             $scope.screenHeader = angular.extend(header, createRightButton());
         }
+
+        function initScreenContent() {
+            $scope.editFields = [
+                {
+                    id: "login",
+                    title: "Phone Number",
+                    value: "",
+                    required: true
+                },
+                {
+                    id: "pin",
+                    title: "Extension",
+                    value: "",
+                    required: false
+                },
+                {
+                    id: "password",
+                    title: "Password",
+                    value: "",
+                    required: true
+                }
+            ];
+        }
+
 
         function createRightButton() {
             return {
@@ -22,5 +47,4 @@ angular.module("RCM.screens")
                 }
             };
         }
-
     });

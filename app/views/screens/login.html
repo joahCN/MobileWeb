@@ -3,32 +3,24 @@
     <screen-header></screen-header>
 
     <screen-content>
-        <form id="loginForm" name="loginForm" novalidate ng-submit="loginForm.$valid && login()">
-            <input type="submit" style="visibility: hidden; width: 0; height: 0;" />
+        <div class="container">
+            <form id="loginForm" name="loginForm" novalidate ng-submit="loginForm.$valid && login()">
+                <input type="submit" style="visibility: hidden; width: 0; height: 0;" />
 
-            <div id='loginFields'>
-                <div class="headerTop">Service Login:</div>
-                <div id="login">
-                    <label for="phoneNumber">Phone Number</label>
-                    <input type="text" id="phoneNumber"
-                           ng-model="account.number"
-                           name="phone_number" required/>
+                <div id='loginFields'>
+                    <div class="headerTop">Service Login:</div>
+                    <edit-field ng-repeat="editField in editFields"
+                                id="{{editField.id}}"
+                                title="{{editField.title}}"
+                                value="{{editField.value}}"
+                                ng-class="{firstBlock: $first, middleBlock: $middle, lastBlock: $last}">
+                    </edit-field>
                 </div>
-                <div id="pin">
-                    <label for="pinInput">Extension</label>
-                    <input type="text" id="pinInput" ng-model="account.ext" />
-                </div>
-                <div id="password">
-                    <label for="passwordInput">Password</label>
-                    <input type="text" id="passwordInput" ng-model="account.password" required />
-                </div>
+            </form>
+            <div id="rememberMe" style="margin-top: 10px" class="onlyBlock">
+                <label for="rememberMeInput">Remember Me</label>
+                <input type="checkbox" id="rememberMeInput"/>
             </div>
-            <input type="submit" value="abcd" />
-
-        </form>
-        <div id="rememberMe" style="margin-top: 10px">
-            <label for="rememberMeInput">Remember Me</label>
-            <input type="checkbox" id="rememberMeInput"/>
         </div>
     </screen-content>
 
