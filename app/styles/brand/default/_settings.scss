@@ -1,4 +1,4 @@
-$orange: #FF7C10 !default;
+$orange: #ff8800 !default;
 $lightBlack: #2f2f2f !default;
 $lightSilver: #cfcfcf !default;
 $silver: #ccc !default;
@@ -17,29 +17,293 @@ $borderColorOuter: $gainsboro !default;
 $valueColor: $blue !default;
 $divideLineColor: #e2e2e2;
 
+$bodyBgColor: white !default;
+$hyperlinkColor: "" !default;
+$inputPlaceholderColor: $darkGray !default;
 
+$containerBgColor: white !default;
 
-$fontColor: #888;
-$valueColor: #0b405e;
-$buttonFontColor: #0b405e;
+$editFieldFontColor: $blue !default;
+$greetingDescriptionFontColor: $darkGray !default;
 
-$borderColorInner: #e8e8e8;
-$borderColorOuter: #e8e8e8;
+$groupItemFontColor: $normalTextColor !default;
+$groupItemBgColor: white !default;
+$groupItemBorderColor: $borderColorOuter !default;
+$groupItemBorderBottomColor: $borderColorInner !default;
 
-
-// Navigation Bar
 $navigationBarBgColor: white !default;
 $navigationBarColor1: #12435e !default;
 $navigationBarColor2: #093b56 !default;
 $navigationBarHeaderFontColor: $normalTextColor !default;
 $navigationBarBottomBorderColor: $silver !default;
 
-$leftRightButtonFontColor: $blue;
+$navigationHelpBarBgColor: rgba(0, 0, 0, 0.8) !default;
+$navigationHelpBarBgImage: none !default;
+$contentHelpBarTitleColor: $orange !default;
+$contentHelpBarColor: white !default;
+$blackRightButtonTextColor: transparent !default;
+$blackRightButtonBackgroundPosition: right center !default;
+$blackRightButtonBackgroundSize: 19px 19px !default;
 
+$headerFontColor: $dimGray !default;
 
-// Screen Menu Button
+$actionButtonMaxWidth: 300px !default;
+$actionButtonFontColor: white !default;
+$actionButtonBorderColor: $blue !default;
+$actionButtonBgColor: $blue !default;
+$actionButtonDisabledBgColor: #81C1DD !default;
+$actionButtonDisabledFontColor: white !default;
+
+$leftRightButtonFontColor: $blue !default;
+$rightButtonDisabledColor: $silver !default;
+
+$imageCaptionFontColor: $dimGray !default;
+
+$filterBgColor: #efeff4 !default;
+$filterBorderBottomColor: #bbb !default;
+
+$sectionHeaderBgColor: $whiteSmoke !default;
+$sectionHeaderFontColor: $blue !default;
+$sectionHeaderBorderBottomColor: $borderColorInner !default;
+$sectionHeaderAddButtonBgColor: white !default;
+$sectionHeaderAddButtonBorderColor: $blue !default;
+
+$extensionListItemBgColor: white !default;
+$extensionListItemBorderBottomColor: $borderColorInner !default;
+$extensionListItemFontColor: $normalTextColor !default;
+$extensionListItemNameColor: $normalTextColor !default;
+$extensionListPlaceholderFontColor: $gray !default;
+$extensionListIconMargin: 0 !default;
+$extensionListIconWidth: 44px !default;
+$extensionListIconHeight: 28px !default;
+
+$ipPhonesListItemBorderBottomColor: $borderColorInner !default;
+$ipPhonesListItemFontColor: $normalTextColor !default;
+$ipPhonesListSubHeaderBorderBottomColor: $borderColorInner !default;
+$ipPhonesListSubHeaderFontColor: $normalTextColor !default;
+$ipPhonesListPlaceholderFontColor: $gray !default;
+
+$mailboxHeaderLineBgColor: $whiteSmoke !default;
+$mailboxHeaderLineFontColor: $dimGray !default;
+
+$didListLiFontColor: $darkGray !default;
+
+$textTabButtonSelectedBgColor: $blue !default;
+$textTabButtonSelectedBorderColor: $blue !default;
+$textTabButtonSelectedFontColor: white !default;
+$textTabButtonNotSelectedBgColor: white !default;
+$textTabButtonNotSelectedBorderColor: $blue !default;
+$textTabButtonNotSelectedFontColor: $blue !default;
+
+$radioButtonDisabledColor: $silver !default;
+$infoExtColor: $blue !default;
+$playerPanelColor: white !default;
+
+$imageWithTextBgColor: #D7E6F0 !default;
+$imageWithTextGradientColor1: #C0D8E7 !default;
+$imageWithTextGradientColor2: #F8FBFC !default;
+
 $screenMenuButtonBgColor: white !default;
 $screenMenuButtonFontColor: $normalTextColor !default;
 $screenMenuButtonBorderBottomColor: $divideLineColor !default;
 $screenMenuButtonBoxShadowColor: #90b2c4 !default;
 $screenMenuButtonVerticalSeparatorBorderColor: $silver !default;
+
+$radioBlockBgColor: white !default;
+$radioBlockBorderColor: $borderColorOuter !default;
+
+$recommendedBillingCycleBgColor: $orange !default;
+$recommendedBillingCycleFontColor: white !default;
+$upgradePlanCurrentPlanFontColor: $orange !default;
+$upgradePlanSubscriptionDurationFontColor: $orange !default;
+$upgradePlanMonthlyPriceContainerFontColor: $blue !default;
+
+$callingPlanNameColor: $orange !default;
+$callingPlanPriceColor: $valueColor !default;
+$billingCyclePlanNameColor: $orange !default;
+$billingCyclePlanInfoColor: $blue !default;
+$billingPlanNameColor: $orange !default;
+$billingPlanInfoColor: $blue !default;
+$billingPlanIncludesColor: $dimGray !default;
+
+$iCallingHACCountryBgColor: #efeff4 !default;
+$iCallingHACCountryFontColor: #585858 !default;
+$iCallingIntCountryBgColor: #E5E5E5 !default;
+$iCallingIntCountryFontColor: #585858 !default;
+$iCallingIntCountryBorderBottomColor: #D4D4D4 !default;
+$iCallingRateBorderBottomColor: #DADADA !default;
+$iCallingHACRateBgColor: white !default;
+$iCallingHACRateTextColor: #888888 !default;
+$iCallingIntRateBgColor: white !default;
+$iCallingIntRateTextColor: #888888 !default;
+
+$imageTabBarBgColor: #e7f1f6 !default;
+$imageTabContentBorderBottomColor: #9ebccc !default;
+$imageTabActiveContentBgColor: $lightGray !default;
+$imageTabBottomBorderBottomColor: white !default;
+
+$searchMatchFontColor: $blue !default;
+
+$infoBlockBgColor: #fffAE4 !default;
+$infoBlockBorderColor: $borderColorOuter !default;
+
+$disabledColor: $gray !default;
+
+$ringGroupItemNameWidth: 70% !default;
+$ringGroupItemNumberFontColor: $darkGray !default;
+$ringGroupItemNumberBorderTopColor: $darkGray !default;
+$ringGroupItemSelectedBgColor: #e6f6fc !default;
+$orderPhoneNumberFontColor: $blue !default;
+$ringGroupItemNumberPadding: 5px 0 0 !default;
+
+
+$ringGroupOrderIconWidth: 38px !default;
+$ringGroupOrderIconHeight: 21px !default;
+
+$errorMessageFontColor: #a60f00 !default;
+$errorMessageBgColor: white !default;
+
+$frameFontColor: $gray !default;
+$frameBgColor: white !default;
+
+$commentFontColor: #929292 !default;
+$commentTextShadowColor: white !default;
+
+$textFontColor: $dimGray !default;
+$textShadowColor: white !default;
+$textTopFontColor: $dimGray !default;
+$textTopShadowColor: white !default;
+
+$containerLiFontColor: $dimGray !default;
+$containerLiTextShadowColor: white !default;
+
+$headerTextMarginTop: 0 !default;
+$headerTextFontColor: $dimGray !default;
+
+$textTabButtonTopBorderColor: $blue !default;
+$textTabButtonRightBorderRightColor: $blue !default;
+
+$highlightedColor: red !default;
+
+$separatorBorderTopColor: #999 !default;
+$separatorBorderBottomColor: white !default;
+
+$brandingBarBgColor: #fbfbfb !default;
+$brandingBarGradientColor1: #fbfbfb !default;
+$brandingBarGradientColor2: #cdcfcf !default;
+$brandingBarBorderBottomColor: #5c6368 !default;
+
+$roundedBlockFontColor: $dimGray !default;
+$roundedBlockBgColor: white !default;
+
+$dataGroupBorderColor: $borderColorOuter !default;
+$dataGroupExpandFontColor: $blue !default;
+
+$dgTotalBorderTopColor: $blue !default;
+$dgTotalFontColor: #3f3f3f !default;
+$dgPlainRowBorderTopColor: $lightSilver !default;
+$dgLevel0FontColor: #868686 !default;
+$dgLevel0TitleFontColor: $blue !default;
+$dgLevel1TitleFontColor: $blue !default;
+$dgLevel1TitleBorderBottomColor: $lightSilver !default;
+$dgLevel2PlainRowBorderTopColor: $lightSilver !default;
+
+$helpShadowBgColor: black !default;
+
+$multipleLineContainerUnderFieldBorderTopColor: $gainsboro !default;
+
+$simpleInputBorderColor: $blue !default;
+$simpleInputBgColor: white !default;
+
+$callFlipGroupItemNameFontColor: $normalTextColor !default;
+$callFlipGroupItemNumberFontColor: $blue !default;
+$callFlipGroupItemNumberGrayColor: $lightSilver !default;
+$callFlipGroupItemValueFontColor: $valueColor !default;
+$callFlipGroupItemValueGrayColor: $lightSilver !default;
+$callFlipOrderIconWidth: 32px !default;
+$callFlipOrderIconHeight: 21px !default;
+
+$triangleIsoscelesFontColor: red !default;
+$triangleIsoscelesBgColor: #ffe3e3 !default;
+$triangleIsoscelesBorderColor: red !default;
+$triangleArrowBorderTopColor: red !default;
+$triangleArrowAfterBorderTopColor: #ffe3e3 !default;
+
+$companyAddressValidateHighLightColor: #f9991f !default;
+$orderMailboxValueColor: $blue !default;
+$filterFormBgColor: white !default;
+$searchIconContainerBorderLeftColor: $silver !default;
+$companyAddressContainerFontColor: #a5a5a5 !default;
+
+$forwardPhoneLabelNameColor: $groupItemFontColor !default;
+$forwardPhoneTextNameColor: null !default;
+$comboBoxValueColor: $blue !default;
+
+$optionTextInfoFontColor: $normalTextColor !default;
+$optionTextInfoValueFontColor: $blue !default;
+
+$editFieldDisabledNameColor: $normalTextColor !default;
+$editFieldDisabledValueColor: $blue !default;
+
+$radioButtonValueRightMargin: 15px !default;
+$radioButtonTextColor: $normalTextColor !default;
+$radioButtonSubTextColor: $normalTextColor !default;
+$checkboxFontColor: $normalTextColor !default;
+
+$switchWidth: 62px !default;
+$switchHeight: 27px !default;
+$switchFontColor: $normalTextColor !default;
+
+$disabledLabelColor: $normalTextColor !default;
+$disabledValueColor: $normalTextColor !default;
+
+$bottomHelpInfoFontColor: #929292 !default;
+
+$readonlyNavigationButtonTextFontColor: $normalTextColor !default;
+
+$helpButtonWidth: 19px !default;
+$helpButtonHeight: 19px !default;
+
+$ipPhonesListIconWidth: 32px !default;
+$ipPhonesListIconHeight: 32px !default;
+
+$staticPanelBackgroundColor: #efeff4 !default;
+
+/* border radius, padding, etc */
+$buttonBorderRadius: 6px !default;
+$blockBorderRadius: 8px !default;
+$defalutBlockPadding: 12px !default;
+$tooltipBorderRadius: 10px !default;
+
+$navigationBarButtonFontSize: 17px !default;
+
+$tellAFriendMainBgColor: #064060 !default;
+$tellAFriendMainBgColor1: #064060 !default;
+$tellAFriendMainBgColor2: #1D5D80 !default;
+$tellAFriendInviteImageMaxWidth: 250px !default;
+$tellAFriendInviteBtnMaxWidth: 85% !default;
+
+$greenActionButtonBorderRadius: 90px !default;
+$greenActionButtonBgColor: #40BB36 !default;
+
+$gradientColorGrayBgColor: $silver !default;
+$gradientColorGrayBgColor1: #b8c4cb !default;
+$gradientColorGrayBgColor2: #f6f6f8 !default;
+$gradientColorGrayBorderColor: $silver !default;
+$gradientColorGrayMarginTop: 10px !default;
+
+$ivrPromptTTSFieldTextAreaColor: $blue !default;
+$extensionsListCustomContainerItemBgColor: #d5f3fd !default;
+
+$playerIconWidth: 60px !default;
+$playerIconHeight: 60px !default;
+$playerIconMarginRight: 30px !default;
+
+$orderIconWidth: 38px !default;
+$orderIconHeight: 21px !default;
+
+$navigationButtonIconMarginTop: 0 !default;
+
+$playerIconTextColor: $blue !default;
+
+$searchBoxPlaceholderFontColor: #b3b3b3 !default;
