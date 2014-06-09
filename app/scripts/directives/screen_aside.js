@@ -1,9 +1,9 @@
-angular.module("RCM.common")
+angular.module("RCM.directives")
     .directive("screenAside", function () {
         return {
             restrict: "E",
             transclude: true,
             replace: true,
-            templateUrl: "/views/common/screen_aside.html"
+            templateUrl: "/views/directives/screen_aside.html"
         };
     });

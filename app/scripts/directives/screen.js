@@ -1,4 +1,4 @@
-angular.module("RCM.common")
+angular.module("RCM.directives")
     .directive("screen", function () {
         return {
             restrict: "E",

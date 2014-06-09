@@ -22,25 +22,20 @@
 
   </head>
   <body>
-    <!--[if lt IE 7]>
+    <!--[if lt IE 8]>
       <p class="browsehappy">
           You are using an <strong>outdated</strong> browser.
           Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
       </p>
     <![endif]-->
 
+
+
     <!-- Add your site or application content here -->
     <div id="screenWrap" class="screen-wrap" ng-view
          ng-class="containerAnimateClassName"></div>
 
-    <!-- ACTIVITY INDICATOR -->
-    <div id="loader" class="loader">
-        <div class="loader-image-container">
-            <img id="loader-image" class="loader-image activityIndicator"
-                 alt="Loading..." src="/images/activity_indicator.png" />
-        </div>
-    </div>
-    <!-- /ACTIVITY INDICATOR -->
+    <loader></loader>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -49,7 +44,6 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -62,18 +56,18 @@
     <script src="scripts/module.js"></script>
 
     <!-- services -->
-    <script src="scripts/core/loader_service.js"></script>
-    <script src="scripts/core/session_service.js"></script>
-    <script src="scripts/core/navigator.js"></script>
+    <script src="scripts/services/session_service.js"></script>
+    <script src="scripts/services/navigator.js"></script>
 
     <!-- directives -->
-    <script src="scripts/common/screen.js"></script>
-    <script src="scripts/common/screen_navigation.js"></script>
-    <script src="scripts/common/screen_navigation/screen_title.js"></script>
-    <script src="scripts/common/screen_navigation/left_button.js"></script>
-    <script src="scripts/common/screen_navigation/right_button.js"></script>
-    <script src="scripts/common/screen_content.js"></script>
-    <script src="scripts/common/screen_aside.js"></script>
+    <script src="scripts/directives/loader.js"></script>
+    <script src="scripts/directives/screen.js"></script>
+    <script src="scripts/directives/screen_navigation.js"></script>
+    <script src="scripts/directives/screen_navigation/screen_title.js"></script>
+    <script src="scripts/directives/screen_navigation/left_button.js"></script>
+    <script src="scripts/directives/screen_navigation/right_button.js"></script>
+    <script src="scripts/directives/screen_content.js"></script>
+    <script src="scripts/directives/screen_aside.js"></script>
 
     <script src="scripts/ui/pane.js"></script>
     <script src="scripts/ui/switch.js"></script>

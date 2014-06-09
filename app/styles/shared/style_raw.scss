@@ -1,4 +1,4 @@
-@import "_settings";
+@import "../include/_settings";
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 
@@ -655,7 +655,7 @@ input[type="search"] {
 }
 
 .errorIcon {
-    background-image: url(../images/icon-error.png);
+    background-image: url(../../images/icon-error.png);
     background-repeat: no-repeat;
     width: 40px;
     height: 40px;
