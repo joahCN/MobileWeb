@@ -12,6 +12,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -33,7 +34,7 @@
 
     <!-- Add your site or application content here -->
     <div id="screenWrap" class="screen-wrap" ng-view
-         ng-class="containerAnimateClassName"></div>
+         ng-class="screenAnimationClass"></div>
 
     <loader></loader>
 
@@ -63,10 +64,7 @@
     <!-- directives -->
     <script src="scripts/directives/loader.js"></script>
     <script src="scripts/directives/screen.js"></script>
-    <script src="scripts/directives/screen_navigation.js"></script>
-    <script src="scripts/directives/screen_navigation/screen_title.js"></script>
-    <script src="scripts/directives/screen_navigation/left_button.js"></script>
-    <script src="scripts/directives/screen_navigation/right_button.js"></script>
+    <script src="scripts/directives/screen_header.js"></script>
     <script src="scripts/directives/screen_content.js"></script>
     <script src="scripts/directives/screen_aside.js"></script>
 

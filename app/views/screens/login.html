@@ -1,10 +1,6 @@
 <screen ng-controller="ScreenLogin">
 
-    <screen-navigation>
-        <left-button></left-button>
-        <screen-title>Account</screen-title>
-        <right-button ng-click="login()">Login</right-button>
-    </screen-navigation>
+    <screen-header></screen-header>
 
     <screen-content>
         <form id="loginForm" name="loginForm" novalidate ng-submit="loginForm.$valid && login()">
