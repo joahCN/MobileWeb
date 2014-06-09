@@ -1,11 +1,13 @@
 angular.module("RCM.services")
-    .factory("navigator$", function ($location) {
+    .factory("navigator$", function ($location, $window) {
         var STORAGE_KEY = "historyStack";
+        var storage = $window.localStorage;
         var historyStack = [];
-        var historyStackInStore = window.localStorage.getItem(STORAGE_KEY);
-        if (historyStackInStore) {
+        var historyStackInStore = storage.getItem(STORAGE_KEY);
+
+        try {
             historyStack = JSON.parse(historyStackInStore);
-        }
+        } catch(e) {}
 
         return {
             push: function () {
@@ -14,8 +16,20 @@ angular.module("RCM.services")
                 });
                 save();
             },
+
+            /**
+             * Delete paths from historyStack form index of current path.
+             */
             pop: function () {
-                historyStack.pop();
+                var pathIndex = getPathIndex();
+                if (pathIndex > -1) {
+                    var numberToDelete = historyStack.length - (pathIndex + 1);
+                    while(numberToDelete > 0) {
+                        historyStack.pop();
+                        numberToDelete--;
+                    }
+                }
+
                 save();
             },
             clean: function () {
@@ -25,20 +39,36 @@ angular.module("RCM.services")
             get: function () {
                 return historyStack;
             },
-            isBack: function () {
-                var stackLength = historyStack.length;
-                if (stackLength >=2) {
-                    var previousHistoryItem = historyStack[historyStack.length - 2];
-                }
 
-                if (previousHistoryItem) {
-                    return $location.path() === previousHistoryItem.path;
-                }
-                return false;
+            /**
+             * Consider that path in the historyStack as a back action.
+             * @returns {boolean}
+             */
+            isBack: function () {
+                return getPathIndex() > -1;
             }
         };
 
+        /**
+         * Get index in the historyStack of currentPath
+         * @returns {number}
+         */
+        function getPathIndex() {
+            var index = -1;
+            var i = historyStack.length - 1;
+            var currentPath = $location.path();
+
+            while (i >= 0) {
+                if (historyStack[i].path === currentPath) {
+                    index = i;
+                    return index;
+                }
+                i--;
+            }
+            return index;
+        }
+
         function save() {
-            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(historyStack));
+            storage.setItem(STORAGE_KEY, JSON.stringify(historyStack));
         }
     });
