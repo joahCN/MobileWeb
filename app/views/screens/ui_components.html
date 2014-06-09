@@ -1,20 +1,14 @@
 <screen ng-controller="ScreenUIComponents">
 
-    <screen-navigation>
-        <left-button></left-button>
-        <screen-title>UI Components</screen-title>
-        <right-button></right-button>
-    </screen-navigation>
+    <screen-header></screen-header>
 
     <screen-content>
         <div class="pane-wrap">
-            <pane has-indicator="true" icon="'/images/ico_payment-method.svg'"
-                  screen="'screen/ui/switch'">
-                Switch
-            </pane>
-            <pane has-indicator="true" icon="'/images/ico_service-plan.svg'"
-                  screen="'screen/ui/select_list'">
-                Select List
+            <pane ng-repeat="pane in panes"
+                    label="{{panel.label}}"
+                    icon="{{pane.icon}}"
+                    screen="{{pane.screen}}">
+                {{pane.title}}
             </pane>
         </div>
     </screen-content>

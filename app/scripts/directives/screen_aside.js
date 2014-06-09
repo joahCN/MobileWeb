@@ -4,6 +4,6 @@ angular.module("RCM.directives")
             restrict: "E",
             transclude: true,
             replace: true,
-            templateUrl: "/views/directives/screen_aside.html"
+            template: '<div id="screenAside" class="screen-aside" ng-transclude></div>'
         };
     });

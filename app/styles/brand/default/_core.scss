@@ -1,0 +1,17 @@
+@mixin backgroundImage(
+$backgroundColor: transparent,
+$backgroundImage: none,
+$backgroundPosition: 0 0,
+$backgroundSize: auto auto,
+$backgroundRepeat: no-repeat,
+$backgroundImageRetina: null
+) {
+
+    $backgroundRetinaImage: $backgroundImage !default;
+    background: $backgroundColor url($backgroundImage) $backgroundPosition $backgroundRepeat;
+    background-size: $backgroundSize;
+
+    @media all and (-webkit-min-device-pixel-ratio: 2) {
+        background-image:url($backgroundImageRetina);
+    }
+}
