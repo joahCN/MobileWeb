@@ -1,5 +1,17 @@
-<h2>Switch with status on:</h2>
-<switch id="sleep" name="'sleep'" on></switch>
+<screen ng-controller="ScreenUISwitch">
 
-<h2>Switch with status off:</h2>
-<switch id="lamp" name="'lamp'"></switch>
+    <screen-navigation>
+        <left-button></left-button>
+        <screen-title>{{screenTitle}}</screen-title>
+        <right-button></right-button>
+    </screen-navigation>
+
+    <screen-content>
+        <h2>Switch with status on:</h2>
+        <switch id="sleep" name="'sleep'" on></switch>
+
+        <h2>Switch with status off:</h2>
+        <switch id="lamp" name="'lamp'"></switch>
+    </screen-content>
+
+</screen>

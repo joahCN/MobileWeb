@@ -1,5 +1,8 @@
 angular.module("RCM.screens")
-    .controller("ScreenControllerSwitch", function ($scope) {
+    .controller("ScreenUISwitch", function ($scope) {
         console.log("Screen Controller: Switch");
+
+        $scope.screenTitle = "UI - Switch";
+
     });
 
