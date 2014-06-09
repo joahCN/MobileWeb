@@ -15,7 +15,7 @@ angular.module("RCM.ui")
             compile: function (tElement, tAttrs, transclude) {
                 if (tAttrs.on) {
                     tElement.addClass("on");
-                    tElement.find("input").attr("checked", true);
+                    //tElement.find("input").attr("checked", true);
                 }
 
                 return function postLink(scope, elem, attrs) {

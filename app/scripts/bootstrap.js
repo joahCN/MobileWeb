@@ -2,9 +2,9 @@ var APP_NAME = "RCM";
 
 angular.module(APP_NAME, [
     "ngRoute",
-    "RCM.core",
+    "RCM.services",
+    "RCM.directives",
     "RCM.ui",
-    "RCM.common",
     "RCM.screens"
 ])
     .config(function($locationProvider, $routeProvider) {
@@ -14,7 +14,9 @@ angular.module(APP_NAME, [
         $routeProvider
             .when("/", {
                 controller: "ScreenMain",
-                template: "" //angular does not invoke controller if no template provided.
+                templateUrl: "/views/screens/loading.html"
+                // templateUrl Required here to make the loader directive
+                // initialized first.
             })
             .when("/screen/:screen*", {
                 templateUrl: function (params) {
@@ -61,6 +63,6 @@ angular.module(APP_NAME, [
     });
 
 // Bootstrap the application.
-$(document).ready(function(){
-    angular.bootstrap($("body"), [APP_NAME]);
+angular.element(document).ready(function(){
+    angular.bootstrap(document, [APP_NAME]);
 });

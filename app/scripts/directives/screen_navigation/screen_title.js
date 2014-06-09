@@ -1,9 +1,9 @@
-angular.module("RCM.common")
+angular.module("RCM.directives")
     .directive("screenTitle", function () {
         return {
             restrict: "E",
             transclude: true,
             replace: true,
-            templateUrl: "/views/common/screen_navigation/screen_title.html"
+            templateUrl: "/views/directives/screen_navigation/screen_title.html"
         };
     });

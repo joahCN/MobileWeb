@@ -4,6 +4,6 @@ angular.module("RCM.ui")
             restrict: "E",
             replace: true,
             transclude: true,
-            templateUrl: "/views/common/screen_navigation/right_button.html"
+            templateUrl: "/views/directives/screen_navigation/right_button.html"
         };
     });
