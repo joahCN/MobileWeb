@@ -53,8 +53,6 @@ angular.module(APP_NAME, [
                 $rootScope.screenAnimationClass = ANIMATION_CLASS_NAME.NEXT;
                 navigator$.push();
             }
-
-            //$log.log("History stack: ", navigator$.get());
         });
 
         $rootScope.$on("$routeChangeError", function () {
