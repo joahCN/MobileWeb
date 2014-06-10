@@ -1,26 +1,14 @@
 <screen ng-controller="ScreenMailboxInfo">
 
-    <screen-navigation>
-        <left-button ng-click="logout()">Logout</left-button>
-        <screen-title>MailboxInfo</screen-title>
-        <right-button></right-button>
-    </screen-navigation>
+    <screen-header></screen-header>
 
     <screen-content>
         <div class="pane-wrap">
-            <pane
-                    label="'test'"
-                    has-indicator="true"
-                    icon="'/images/ps_company_number.svg'">
-                User Info
-            </pane>
-
-            <pane icon="'/images/ps_auto_receptionist.svg'">
-                Screening, Greeting & Hold Music
-            </pane>
-
-            <pane icon="'/images/record.svg'" screen="'screen/ui_components'">
-                UI Components
+            <pane ng-repeat="pane in panes"
+                  label="{{pane.label}}"
+                  icon="{{pane.icon}}"
+                  screen="{{pane.screen}}">
+                {{pane.title}}
             </pane>
         </div>
     </screen-content>

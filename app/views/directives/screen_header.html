@@ -1,0 +1,39 @@
+<div id="screenHeader">
+    <div id="navigationBarWrapper" class="screen-navigation">
+        <div id="navigationToolBar" class="screen-navigation-bar">
+            <div class="navigationBar-leftButton-wrapper">
+                <div id="navigationBar-leftButton">
+                    <div ng-if="screenHeader.leftButton"
+                         ng-click="screenHeader.leftButton.click()"
+                         id="navigationBar-leftButton-button" class="leftButton">
+                        <div id="navigationBar-leftButton-text">
+                            {{screenHeader.leftButton.text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigationBar-titleWrapper">
+                <div style="position: relative;margin: 0 10%;">
+                    <div class="navigationBarHeader">
+                        <div id="navigationBar" class="ellipsis">
+                            {{screenHeader.title}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigationBar-rightButton-wrapper">
+                <div id="navigationBar-rightButton">
+                    <div ng-if="screenHeader.rightButton"
+                         ng-click="screenHeader.rightButton.click()"
+                         id="navigationBar-rightButton-button" class="rightButton">
+                        <div id="navigationBar-rightButton-text" class="ellipsis">
+                            {{screenHeader.rightButton.text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

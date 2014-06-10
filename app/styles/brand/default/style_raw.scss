@@ -1,16 +1,25 @@
 @import "_settings";
+@import "_core";
 
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
 body {
-    background: white;
+    background: $bodyBgColor;
 }
 
 input::-webkit-input-placeholder {
-    color: #ccc;
+    color: $inputPlaceholderColor;
     direction: rtl;
+}
+
+input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+input:focus {
+    outline:none;
 }
 
 input[type='search']::-webkit-input-placeholder,  input.placeholderLeft::-webkit-input-placeholder{
@@ -22,41 +31,64 @@ input:focus::-webkit-input-placeholder {
     color: transparent;
 }
 
+a {
+    color: $hyperlinkColor;
+}
+
+.loading {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    background-image: url("../images/activity_indicator.png");
+    background-size: 40px 40px;
+}
+
 .container {
-    background: #fff;
-    border-bottom: 1px solid #e6e6e6;
-    @include box-shadow(0 1px 1px #fff);
+    background: $containerBgColor;
     overflow: hidden;
 }
 
-.editField {
-    color: #0076a3;
+.container .textTop {
+    color: $textTopFontColor;
+    text-shadow: $textTopShadowColor 0 1px 0;
 }
 
-.onlyBlock, .dataGroup {
-    border-color: $borderColorOuter;
+.container li {
+    color: $containerLiFontColor;
+    text-shadow: $containerLiTextShadowColor 0 1px 0;
 }
 
-.lastBlock {
-    border-color: $borderColorOuter;
-}
-
-.firstBlock {
-    border-color: $borderColorOuter;
-    border-bottom-color: $borderColorInner;
-}
-
-.middleBlock {
-    border-color: $borderColorOuter;
-    border-bottom-color: $borderColorInner;
-}
-
-.greetingDescription {
-    color: $fontColor;
+.editField, .editFieldDisabled {
+    color: $editFieldFontColor;
 }
 
 .firstBlock, .middleBlock, .lastBlock, .onlyBlock {
-    color: $fontColor;
+    color: $groupItemFontColor;
+    border-color: $groupItemBorderColor;
+    background-color: $groupItemBgColor;
+}
+
+.firstBlock, .middleBlock {
+    border-bottom-color: $groupItemBorderBottomColor;
+}
+
+.firstBlock {
+    @include border-top-right-radius($blockBorderRadius);
+    @include border-top-left-radius($blockBorderRadius);
+}
+
+.lastBlock {
+    @include border-bottom-right-radius($blockBorderRadius);
+    @include border-bottom-left-radius($blockBorderRadius);
+}
+
+.onlyBlock, .frame, .roundedBlock, .dataGroup {
+    @include border-radius($blockBorderRadius);
+}
+
+.greetingDescription {
+    color: $greetingDescriptionFontColor;
 }
 
 .navigationBar {
@@ -68,22 +100,72 @@ input:focus::-webkit-input-placeholder {
     color: $navigationBarHeaderFontColor;
 }
 
-.header, .headerTop {
-    color: #666;
+.helpButton {
+    height: $helpButtonWidth;
+    width: $helpButtonHeight;
+    @include backgroundImage(
+    $backgroundImage: "../images/help_button.png",
+    $backgroundImageRetina: "../images/help_button_x2.png",
+    $backgroundSize: $helpButtonWidth $helpButtonHeight
+    );
 }
+
+.navigationHelpBar {
+    background: $navigationHelpBarBgColor $navigationHelpBarBgImage;
+}
+
+.contentHelpBar h1 {
+    color: $contentHelpBarTitleColor;
+}
+
+.contentHelpBar p, .contentHelpBar ul li, .contentHelpBar ol li {
+    color: $contentHelpBarColor;
+}
+
+.header, .headerTop {
+    color: $headerFontColor;
+}
+
+
 
 .leftButton, .rightButton, .rightButtonDisabled {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: $navigationBarButtonFontSize;
+}
+.leftButton {
+    text-align: left;
+}
+.rightButton, .rightButtonDisabled  {
+    text-align: right;
 }
 
+.blackRightButton {
+    height: 30px;
+    color: $blackRightButtonTextColor;
+    @include backgroundImage(
+    $backgroundImage: "../images/info_button.png",
+    $backgroundPosition:$blackRightButtonBackgroundPosition,
+    $backgroundImageRetina: "../images/info_button_x2.png",
+    $backgroundSize: $blackRightButtonBackgroundSize
+    );
+}
 
 .actionButton {
-    color: $buttonFontColor ;
-    border-color: #a1c1d2;
-    background-color: #d1e2ed;
-    max-width: 260px;
+    @include border-radius($buttonBorderRadius);
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid $actionButtonBorderColor;
+    color: $actionButtonFontColor ;
+    background-color: $actionButtonBgColor;
+    max-width: $actionButtonMaxWidth;
+    height: 38px;
     margin: 0 auto;
+}
+.actionButtonDisabled {
+    border-color: $actionButtonDisabledBgColor;
+    background-color: $actionButtonDisabledBgColor;
+}
+.actionButton .disabled {
+    color: $actionButtonDisabledFontColor;
 }
 
 .actionButtonBlock {
@@ -98,12 +180,6 @@ input:focus::-webkit-input-placeholder {
     margin-left: 0;
 }
 
-ul.centeredButtons {
-    li[data-hidden="1"] {
-        display: none;
-    }
-}
-
 .fullWidth {
     width: 100%;
     margin: 0;
@@ -114,21 +190,14 @@ ul.centeredButtons {
 .rightButton {
     color: $leftRightButtonFontColor;
 }
-.leftButton {
-}
-    .leftButton div {
-    }
 
 .rightButton,
 .rightButtonDisabled {
     margin-left: -1px;
 }
-    .rightButton div,
-    .rightButtonDisabled div {
-    }
 
 .rightButtonDisabled {
-    color: #4e7a91;
+    color: $rightButtonDisabledColor;
 }
 
 .deleteButton {
@@ -140,11 +209,19 @@ ul.centeredButtons {
 }
 
 .valueGray {
-    color: #CFCFCF;
+    color: $lightSilver;
+}
+
+.listTitle {
+    color: $normalTextColor;
+    font-weight: bold;
+}
+.listSubTitle {
+    color: $darkGray;
 }
 
 .imageCaption {
-    color: #666666;
+    color: $imageCaptionFontColor;
     font-weight: bold;
     font-size: 12pt;
 }
@@ -156,11 +233,11 @@ ul.centeredButtons {
     width: 13px;
 }
 .checked {
-    background-image: url("../images/tick.png");
-    @media all and (-webkit-min-device-pixel-ratio: 2){
-        background-image: url(../images/tick_x2.png);
-        background-size: 13px 13px;
-    }
+    @include backgroundImage(
+    $backgroundImage: "../images/tick.png",
+    $backgroundImageRetina: "../images/tick_x2.png",
+    $backgroundSize: 13px 13px
+    );
 }
 
 .radioBlockCenterRight > .checked {
@@ -171,49 +248,73 @@ ul.centeredButtons {
 }
 
 .radioBlockTopLeft > .checked {
-  left:10px;
-  top: 12px;
+    left:10px;
+    top: 12px;
 }
 
 .filter {
-    background: #e0e0e0;
-    border-bottom: 1px solid #bbb;
+    background: $filterBgColor;
+    border-bottom: 1px solid $filterBorderBottomColor;
     padding: 10px 0;
 }
 
 .sectionHeader {
-    background: #f0f0f0;
-    color: $valueColor;
-    border-bottom: 1px solid $borderColorInner;
+    background: $sectionHeaderBgColor;
+    color: $sectionHeaderFontColor;
 }
 
 .sectionHeaderAddButton {
-    background: #cde0eb url("../images/set_btn_plus.png") 3px 3px no-repeat;
-    border-color: #a1c1d2;
+    border-color: $sectionHeaderAddButtonBorderColor;
+    @include backgroundImage(
+    $backgroundImage: "../images/set_btn_plus.png",
+    $backgroundImageRetina: "../images/set_btn_plus_x2.png",
+    $backgroundColor: $sectionHeaderAddButtonBgColor,
+    $backgroundPosition: 3px 3px,
+    $backgroundSize: 10px 10px
+    );
 }
 
 .extensionListItem {
-    background: #fff;
+    background: $extensionListItemBgColor;
     position: relative;
     -webkit-margin-bottom-collapse: separate;
     -webkit-margin-top-collapse: separate;
-    border-bottom: 1px solid $borderColorInner;
-    color: $fontColor;
+    border-bottom: 1px solid $extensionListItemBorderBottomColor;
+    color: $extensionListItemFontColor;
     font-size: 13px;
     min-height: 45px;
     white-space: nowrap;
     width: 100%;
+    .value {
+        font-size: 17px;
+        font-weight: bold;
+        color: $extensionListItemNameColor;
+    }
 }
 
 .extensionListIcon {
-    background-image: url(../images/department_icon.png);
-    background-repeat: no-repeat;
-    height: 28px;
-    width: 52px;
-    margin: -7px 9px 0px -5px;
     display: none;
+    margin: $extensionListIconMargin;
+    width: $extensionListIconWidth;
+    height: $extensionListIconHeight;
     float: left;
+    @include backgroundImage(
+    $backgroundImage: "../images/department_icon.png",
+    $backgroundImageRetina: "../images/department_icon_x2.png"
+    )
 }
+.extensionListIconCompacted {
+    width: 30px;
+}
+
+.extensionListPlaceholder {
+    text-align: left;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: $extensionListPlaceholderFontColor;
+}
+
 .extensionListText {
     float: left;
     width: 53%
@@ -223,67 +324,104 @@ ul.centeredButtons {
     position: relative;
     -webkit-margin-bottom-collapse: separate;
     -webkit-margin-top-collapse: separate;
-    border-bottom: 1px solid $borderColorInner;
-    color: $fontColor;
+    border-bottom: 1px solid $ipPhonesListItemBorderBottomColor;
+    color: $ipPhonesListItemFontColor;
     font-size: 12px;
-    min-height: 46px;
+    min-height: 60px;
     white-space: nowrap;
     width: 100%;
+    line-height: 1;
 }
 
-.ipPhonesListIcon
-{
+.ipPhonesListIcon {
     background-repeat: no-repeat;
     position: absolute;
-    height: 28px;
+    height: $ipPhonesListIconHeight;
     left: 8px;
     top: 9px;
-    width: 30px;
+    width: $ipPhonesListIconWidth;
     padding-top: 25px;
     font-size: 10px;
 }
 
-.ipPhonesListSubHeader{
+.ipPhonesListPlaceholder {
+    text-align: left;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: $ipPhonesListPlaceholderFontColor;
+}
+
+.ipPhonesListSubHeader {
     position: relative;
     -webkit-margin-bottom-collapse: separate;
     -webkit-margin-top-collapse: separate;
-    border-bottom: 1px solid $borderColorInner;
-    color: $fontColor;
-    font-size: 12px;
+    border-bottom: 1px solid $ipPhonesListSubHeaderBorderBottomColor;
+    color: $ipPhonesListSubHeaderFontColor;
+    font-size: 15px;
     white-space: nowrap;
-
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 7px 18px;
 }
 
+.ipPhonesListItem-icon-softphone {
+    @include backgroundImage(
+    $backgroundImage: "../images/phonedevices/icon_softphone.png",
+    $backgroundImageRetina: "../images/phonedevices/icon_softphone_x2.png",
+    $backgroundSize: 32px 32px
+    );
+}
+.ipPhonesListItem-icon-otherphone {
+    @include backgroundImage(
+    $backgroundImage: "../images/phonedevices/icon_otherphone.png",
+    $backgroundImageRetina: "../images/phonedevices/icon_otherphone_x2.png",
+    $backgroundSize: 30px 30px
+    );
+}
+.ipPhonesListItem-icon-rcphone {
+    @include backgroundImage(
+    $backgroundImage: "../images/phonedevices/icon_rcphone.png",
+    $backgroundImageRetina: "../images/phonedevices/icon_rcphone_x2.png",
+    $backgroundSize: 30px 30px
+    );
+}
+.ipPhonesListItem-icon-paging {
+    @include backgroundImage(
+    $backgroundImage: "../images/phonedevices/icon_paging.png",
+    $backgroundPosition: 50% 50%,
+    $backgroundImageRetina: "../images/phonedevices/icon_paging_x2.png",
+    $backgroundSize: 18px 18px
+    );
+}
+
+
 .mailboxHeader-line {
-    padding-top: 7px;
-    background: #96BFD1;
+    padding: 7px 18px 0 18px;
+    background: $mailboxHeaderLineBgColor;
     height: 21px;
-    padding-left: 18px;
-    color: white;
-    font-size: 13px;
-    font-weight: bold;
+    color: $mailboxHeaderLineFontColor;
+    font-size: 14px;
 }
 
 .mailboxHeader-value {
     float: right;
-    margin-right: 18px;
+    max-width: 50%;
 }
 
-.didList li {
-    color: $fontColor;
+.didList, .didList li{
+    color: $didListLiFontColor;
 }
 
 .textTabButtonSelected {
-    background: #0b405e;
-    border-color: #0b405e;
-    color: white;
+    background: $textTabButtonSelectedBgColor;
+    border-color: $textTabButtonSelectedBorderColor;
+    color: $textTabButtonSelectedFontColor;
 }
 .textTabButtonNotSelected {
-    background: #d1e2ed;
-    border-color: #a1c1d2;
-    color: #0b405e;
+    background: $textTabButtonNotSelectedBgColor;
+    border-color: $textTabButtonNotSelectedBorderColor;
+    color: $textTabButtonNotSelectedFontColor;
 }
 
 .radioButtonWithIcon-simultaneously, .radioButtonWithIcon-mailbox {
@@ -300,7 +438,11 @@ ul.centeredButtons {
 }
 
 .radioButtonDisabled {
-    color: #CCC;
+    color: $radioButtonDisabledColor;
+}
+
+.radioButton-valueRightMargin {
+    margin-right: $radioButtonValueRightMargin;
 }
 
 .infoName {
@@ -309,21 +451,53 @@ ul.centeredButtons {
     text-align: center;
 }
 .infoExt {
-    color: #0076A3;
+    color: $infoExtColor;
 }
+
+.navigationButton-icon {
+    margin-top: $navigationButtonIconMarginTop;
+    margin-right: 10px;
+}
+
 .playerPanel {
-    background: #0b405e;
+    background: $playerPanelColor;
     margin: 0 -20px;
+    border-top: 1px solid #b2b2b2;
 }
+
+.player-icon {
+    margin-right: $playerIconMarginRight;
+}
+
+.player-record-icon,
+.player-play-icon {
+    padding: 20px 6px 5px;
+    width: $playerIconWidth;
+    height: $playerIconHeight;
+}
+
+.player-icon-text {
+    font-size: 12px;
+    color: $playerIconTextColor;
+}
+
+
 .staticPanel {
-    margin: 0 18px;
-    padding: 18px 0;
     position: relative;
+    padding: 18px;
+    background: $staticPanelBackgroundColor;
+    border-top: 1px solid $silver;
+    box-shadow: inset 0 1px 0 white;
 }
+
 .trash {
-    background: url(../images/trash.png) no-repeat;
-    height: 27px;
     width: 25px;
+    height: 27px;
+    @include backgroundImage(
+    $backgroundImage: "../images/trash.png",
+    $backgroundImageRetina: "../images/trash_x2.png",
+    $backgroundSize: 18px 20px
+    );
 }
 
 .trashTopRight {
@@ -338,59 +512,153 @@ ul.centeredButtons {
     background-position: center right;
     padding-right : 26px;
     line-height: 18px;
-	height: 18px;
-	margin-top: -2px;
+    height: 18px;
+    margin-top: -2px;
+    color: $checkboxFontColor;
 }
 
 .plainCheck {
-	padding-right : 0;
+    padding-right : 0;
 }
 
 .checkOn {
-    background-image: url(../images/check_on.png);
-
-    @media all and (-webkit-min-device-pixel-ratio: 2){
-        background-image: url(../images/check_on_x2.png);
-        background-size: 13px 13px;
-    }
+    @include backgroundImage(
+    $backgroundImage: "../images/check_on.png",
+    $backgroundImageRetina: "../images/check_on_x2.png",
+    $backgroundSize: 13px 13px,
+    $backgroundPosition: center right
+    )
 }
 .checkOff {
-    background-image: url(../images/check_off.png);
-
-    @media all and (-webkit-min-device-pixel-ratio: 2){
-        background-image: url(../images/check_off_x2.png);
-        background-size: 13px 13px;
-    }
+    @include backgroundImage(
+    $backgroundImage: "../images/check_off.png",
+    $backgroundImageRetina: "../images/check_off_x2.png",
+    $backgroundSize: 13px 13px,
+    $backgroundPosition: center right
+    )
 }
 .checkOnDisabled {
-    background-image: url(../images/check_on_disabled.png);
+    @include backgroundImage(
+    $backgroundImage: "../images/check_on_disabled.png",
+    $backgroundImageRetina: "../images/check_on_disabled_x2.png",
+    $backgroundSize: 13px 13px,
+    $backgroundPosition: center right
+    );
 }
-.checkOffDisabled {
+
+.chevron_bg {
+    padding-right: 25px;
+    @include backgroundImage(
+    $backgroundImage: "../images/chevron.png",
+    $backgroundImageRetina: "../images/chevron_x2.png",
+    $backgroundPosition: center right,
+    $backgroundSize: 7px 11px
+    )
+}
+
+.chevron {
+    position: absolute;
+    height: 16px;
+    margin-left: auto;
+    right: 18px;
+    top: 50%;
+    margin-top: -7px;
+    width: 16px;
+    @include backgroundImage(
+    $backgroundImage: "../images/chevron.png",
+    $backgroundImageRetina: "../images/chevron_x2.png",
+    $backgroundPosition: 55% 45%,
+    $backgroundSize: 7px 11px
+    );
 }
 
 .orderUp, .orderDown, .orderUpDisabled, .orderDownDisabled {
-    display: block;
-    height: 27px;
-    left: 12px;
-    margin-top: -8px;
-    width: 52px;
+    height: $ringGroupOrderIconHeight;
+    width: $ringGroupOrderIconWidth;
 }
 .orderUp {
-    background-image: url(../images/btn_up.png);
+    @include backgroundImage(
+    $backgroundImage: "../images/btn_up.png",
+    $backgroundImageRetina: "../images/btn_up_x2.png",
+    $backgroundSize: $orderIconWidth $orderIconHeight
+    );
 }
 .orderUpDisabled {
-    background-image: url(../images/btn_up_disabled.png);
+    @include backgroundImage(
+    $backgroundImage: "../images/btn_up_disabled.png",
+    $backgroundImageRetina: "../images/btn_up_disabled_x2.png",
+    $backgroundSize: $orderIconWidth $orderIconHeight
+    );
 }
 .orderDown {
-    background-image: url(../images/btn_down.png);
+    @include backgroundImage(
+    $backgroundImage: "../images/btn_down.png",
+    $backgroundImageRetina: "../images/btn_down_x2.png",
+    $backgroundSize: $orderIconWidth $orderIconHeight
+    );
 }
 .orderDownDisabled {
-    background-image: url(../images/btn_down_disabled.png);
+    @include backgroundImage(
+    $backgroundImage: "../images/btn_down_disabled.png",
+    $backgroundImageRetina: "../images/btn_down_disabled_x2.png",
+    $backgroundSize: $orderIconWidth $orderIconHeight
+    );
+}
+
+.switchBlock {
+    color: $switchFontColor;
+}
+
+.switch {
+    width: $switchWidth;
+    height: $switchHeight;
+}
+
+.switchOn {
+    @include backgroundImage(
+    $backgroundImage: "../images/switchOn.png",
+    $backgroundImageRetina: "../images/switchOn_x2.png",
+    $backgroundSize: $switchWidth $switchHeight
+    );
+
+    &.disabled {
+        @include backgroundImage(
+        $backgroundImage: "../images/switchOn_Disabled.png",
+        $backgroundImageRetina: "../images/switchOn_Disabled_x2.png",
+        $backgroundSize: $switchWidth $switchHeight
+        );
+    }
+}
+
+.switchOff {
+    @include backgroundImage(
+    $backgroundImage: "../images/switchOff.png",
+    $backgroundImageRetina: "../images/switchOff_x2.png",
+    $backgroundSize: $switchWidth $switchHeight
+    );
+
+    &.disabled {
+        @include backgroundImage(
+        $backgroundImage: "../images/switchOff_Disabled.png",
+        $backgroundImageRetina: "../images/switchOff_Disabled_x2.png",
+        $backgroundSize: $switchWidth $switchHeight
+        );
+    }
+}
+
+.errorIcon {
+    width: 40px;
+    height: 40px;
+    @include backgroundImage(
+    $backgroundImage: "../images/icon-error.png",
+    $backgroundImageRetina: "../images/icon-error_x2.png",
+    $backgroundSize: 40px 40px
+    );
 }
 
 .imageWithText {
     min-height: 70px;
-    @include background(#D7E6F0 linear-gradient(top, #C0D8E7, #F8FBFC));
+    @include background($imageWithTextBgColor linear-gradient(top, $imageWithTextGradientColor1, $imageWithTextGradientColor2));
 }
 
 .screenMenuButton {
@@ -400,32 +668,75 @@ ul.centeredButtons {
     font-size: 18px;
 }
 
+.screenMenuButtonVerticalSeparator {
+    border-left: 1px solid $screenMenuButtonVerticalSeparatorBorderColor;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 0;
+}
+
 .detailsButton {
-    background-image: url(../images/details.png);
+    @include backgroundImage(
+    $backgroundImage: "../images/details.png",
+    $backgroundImageRetina: "../images/details_x2.png"
+    );
 }
 
 
-.radioBlock {
-    background-color: white;
+.radioBlock, .checkedRadioBlock {
+    @include border-radius($blockBorderRadius);
+    padding: 0 $blockBorderRadius;
 }
 
-.checkedRadioBlock {
+.radioBlockTopLeft {
+    padding: $defalutBlockPadding $defalutBlockPadding $defalutBlockPadding 30px;
+}
+
+.radioBlockCenterRight {
+    padding: $defalutBlockPadding 30px $defalutBlockPadding $defalutBlockPadding;
 }
 
 .radioBlock, .checkedRadioBlock {
-    border: 1px solid $borderColorOuter;
+    background-color: $radioBlockBgColor;
+    border: 1px solid $radioBlockBorderColor;
 }
 
 .recommendedBillingCycle {
-    background: #FF7C10;
-    color: #fff;
+    background: $recommendedBillingCycleBgColor;
+    color: $recommendedBillingCycleFontColor;
     font-size: 12px;
     padding: 2px 10px;
     @include border-radius(0 8px 0 8px);
 }
 
+.upgradePlan-currentPlan {
+    width: 7em;
+    float: right;
+    color: $upgradePlanCurrentPlanFontColor;
+    font-size: 12px;
+    padding: 2px 0px;
+    font-weight: bold;
+}
+
+.upgradePlan-subscriptionDuration {
+    font-weight: bold;
+    color: $upgradePlanSubscriptionDurationFontColor;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-right: 5em;
+    white-space: normal;
+}
+
+.upgradePlan-monthlyPrice-container {
+    color: $upgradePlanMonthlyPriceContainerFontColor;
+    font-size: 12px;
+    font-weight: normal;
+}
+
 .callingPlan .planName{
-    color: #FF7C10;
+    color: $callingPlanNameColor;
     font-weight: bold;
     margin-right: 6.5em;
 }
@@ -436,20 +747,20 @@ ul.centeredButtons {
 }
 
 .callingPlan .planPrice {
-    color: $valueColor;
+    color: $callingPlanPriceColor;
     font-size: 14px;
     font-weight: bold;
     margin-top: 6px;
 }
 
 .billingCycle .planName{
-    color: #FF7C10;
+    color: $billingCyclePlanNameColor;
     font-weight: bold;
     margin-right: 6.5em;
 }
 
 .billingCycle .planInfo {
-    color: #00709C;
+    color: $billingCyclePlanInfoColor;
     font-size: 12px;
 }
 
@@ -458,12 +769,12 @@ ul.centeredButtons {
 }
 
 .billingPlan .planName{
-    color: #FF7C10;
+    color: $billingPlanNameColor;
     font-weight: bold;
 }
 
 .billingPlan .planInfo {
-    color: #00709C;
+    color: $billingPlanInfoColor;
     font-size: 12px;
 }
 
@@ -473,7 +784,7 @@ ul.centeredButtons {
 
 .billingPlan .includes{
     margin-top: 8px;
-    color: #666;
+    color: $billingPlanIncludesColor;
     font-size: 12px;
 }
 
@@ -487,26 +798,51 @@ ul.centeredButtons {
     margin: 0;
 }
 
-
-.iCallingHAC .rateBackground {
-    background-color: #E4ECF2;
+.iCallingHACCountry, .iCallingIntCountry {
+    font-weight: bold;
+    height: 16px;
+    font-size: 12px;
+    padding-left: 13px;
+    padding-top: 2px;
 }
 
-.iCallingHAC .rateText {
-    color: #60717E;
+.iCallingHACCountry {
+    background-color: $iCallingHACCountryBgColor;
+    color: $iCallingHACCountryFontColor;
+    border-bottom: 1px solid $iCallingIntCountryBorderBottomColor;
+}
+
+.iCallingIntCountry {
+    background-color: $iCallingIntCountryBgColor;
+    color: $iCallingIntCountryFontColor;
+    border-bottom: 1px solid $iCallingIntCountryBorderBottomColor;
+}
+
+.iCallingHAC .rateBackground, .iCallingInt .rateBackground {
+    border-bottom: 1px solid $iCallingRateBorderBottomColor;
+    width: 100%;
+    min-height: 40px;
+}
+
+.iCallingHAC .rateBackground {
+    background-color: $iCallingHACRateBgColor;
 }
 
 .iCallingInt .rateBackground {
-    background-color: white;
+    background-color: $iCallingIntRateBgColor;
+}
+
+.iCallingHAC .rateText {
+    color: $iCallingHACRateTextColor;
 }
 
 .iCallingInt .rateText {
-    color: #888888;
+    color: $iCallingIntRateTextColor;
 }
 
 .imageTabBar{
     height: 55px;
-    background: #e7f1f6;
+    background: $imageTabBarBgColor;
 }
 
 .imageTab_no_active, .imageTab_active {
@@ -517,11 +853,11 @@ ul.centeredButtons {
     height: 53px;
     display: block;
     text-align: center;
-    border-bottom: 1px solid #9ebccc;
+    border-bottom: 1px solid $imageTabContentBorderBottomColor;
 }
 
 .imageTab_active .content {
-    background-color: #d1e2ed;
+    background-color: $imageTabActiveContentBgColor;
     zoom: 1;
 }
 
@@ -532,81 +868,498 @@ ul.centeredButtons {
 }
 
 .imageTab_active .bottom, .imageTab_no_active .bottom {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid $imageTabBottomBorderBottomColor;
 }
 
 .searchMatch {
-    color: #0076A3;
+    color: $searchMatchFontColor;
     font-weight: bold;
 }
 
-.infoBlock {
-    background-color: #FFFAE4;
-    border-color: $borderColorOuter;
-}
-
 .disabled {
-    color: gray;
+    color: $disabledColor;
 }
 
-.ringGroup-item-number-number {
-    color:$valueColor;
+.errorMessage {
+    color: $errorMessageFontColor;
+    background-color: $errorMessageBgColor;
+}
+
+.frame {
+    color: $frameFontColor;
+    background-color: $frameBgColor;
+}
+
+.comment {
+    color: $commentFontColor;
+    text-shadow: $commentTextShadowColor 0 1px 0;
+}
+
+.text {
+    color: $textFontColor;
+    text-shadow: $textShadowColor 0 1px 0;
+    margin: 5px 0;
+}
+
+.headerIcon {
+    width: auto;
+    height: auto;
+}
+.headerText {
+    margin-top: $headerTextMarginTop;
+    color: $headerTextFontColor;
+}
+
+.textTabButtonTop {
+    border: 1px solid $textTabButtonTopBorderColor;
+}
+
+.textTabButtonRight {
+    border-right: 1px solid $textTabButtonRightBorderRightColor;
+}
+
+.highlighted {
+    color: $highlightedColor !important;
+}
+
+.separator {
+    border-top-color: $separatorBorderTopColor;
+    border-bottom-color: $separatorBorderBottomColor;
+}
+
+.brandingBar {
+    @include background($brandingBarBgColor linear-gradient(top, $brandingBarGradientColor1, $brandingBarGradientColor2));
+    border-bottom: 1px solid $brandingBarBorderBottomColor;
+}
+
+.roundedBlock {
+    color: $roundedBlockFontColor;
+    background-color: $roundedBlockBgColor;
+}
+
+.infoBlock {
+    background-color: $infoBlockBgColor;
+    border-color: $infoBlockBorderColor;
+}
+
+.dataGroup {
+    border-color: $dataGroupBorderColor;
+}
+
+.dataGroup .expand {
+    color: $dataGroupExpandFontColor;
+}
+
+.dg_total {
+    border-top: 1px solid $dgTotalBorderTopColor;
+    color: $dgTotalFontColor;
+}
+
+.dg_plainRow {
+    border-top: 1px solid $dgPlainRowBorderTopColor;
+}
+
+.dg_level0 {
+    color: $dgLevel0FontColor;
+}
+
+.dg_level0 .dg_title {
+    color: $dgLevel0TitleFontColor;
+}
+
+.dg_level1 .dg_title {
+    color: $dgLevel1TitleFontColor;
+    border-bottom: 1px solid $dgLevel1TitleBorderBottomColor;
+}
+
+.dg_level2 .dg_firstElement > div > .dg_plainRow,
+.dg_level2 .dg_onlyElement > div > .dg_plainRow {
+    border-top: 1px solid $dgLevel2PlainRowBorderTopColor;
+}
+
+.helpShadow {
+    background-color: $helpShadowBgColor;
 }
 
 div .green_action_btn_container div .actionButton{
-  background-color: #40BB36;
-  border-radius: 90px;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  text-shadow: 0 -1px 0 #000000;
-  border: 0px;
-  height:35px;
+    background-color: $greenActionButtonBgColor;
+    border-radius: $greenActionButtonBorderRadius;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 -1px 0 #000000;
+    border: 0px;
+    height:35px;
 }
 
 .gradientColorBlue {
-  background-color:#064060;
-  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#064060,endColorStr=#1D5D80);/*IE6*/
-  background:-moz-linear-gradient(left,#064060,#1D5D80);/*others*/
-  background:-webkit-gradient(linear, 0% 0%, 100% 0%, from(#064060), to(#1D5D80));/*others*/
+    @include background($tellAFriendMainBgColor linear-gradient(left, $tellAFriendMainBgColor1, $tellAFriendMainBgColor2));
 }
 
 .gradientColorGray {
-  background-color:#CCCCCC;
-  padding:10px 8px 6px;
-  border: 1px solid #CCCCCC;
-  margin-bottom:10px;
-  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=#f6f6f8);/*IE6*/
-  background:-moz-linear-gradient(top,#b8c4cb,#f6f6f8);/*others*/
-  background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#b8c4cb), to(#f6f6f8));/*others*/
+    padding:$gradientColorGrayMarginTop 8px 6px;
+    border: 1px solid $gradientColorGrayBorderColor;
+    margin-bottom:10px;
+    @include background($gradientColorGrayBgColor linear-gradient(top, $gradientColorGrayBgColor1, $gradientColorGrayBgColor2));
 }
 
 .editFieldDisabledContainer {
-  height: 27px;
-  position: relative;
-  .editFieldDisabledNameContainer {
-    position: absolute;
-    left: 0;
-    bottom: 13px
-  }
+    height: 27px;
+    position: relative;
+    .editFieldDisabledNameContainer {
+        color: $editFieldDisabledNameColor;
+        position: absolute;
+        left: 0;
+        bottom: 13px;
+        .editFieldDisabled-subText {
+            color: $editFieldDisabledValueColor;
+        }
+    }
 
-  .editFieldDisabledValueContainer {
-    position: absolute;
-    right: 0;
-    bottom: 13px;
-  }
+    .editFieldDisabledValueContainer {
+        color: $editFieldDisabledValueColor;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
+    }
 }
 
 .editFieldDisabledDetailContainer {
-  height: auto;
-  .editFieldDisabledNameContainer,.editFieldDisabledValueContainer {
-    bottom: auto;
-    position: relative;
-    display: inline-block;
-  }
+    height: auto;
+    .editFieldDisabledNameContainer,.editFieldDisabledValueContainer {
+        bottom: auto;
+        position: relative;
+        display: inline-block;
+    }
 }
 .multipleLineContainerUnderField {
-  border-top: 1px solid #e8e8e8;
-  padding-top: 13px;
+    border-top: 1px solid $multipleLineContainerUnderFieldBorderTopColor;
+    padding-top: 13px;
+}
+
+.simpleInput {
+    border: 1px solid $simpleInputBorderColor;
+    background-color: $simpleInputBgColor;
+}
+
+.ringGroup-item-number-name {
+    width: $ringGroupItemNameWidth;
+}
+
+.ringGroup-item-number-number {
+    padding: $ringGroupItemNumberPadding;
+    color: $ringGroupItemNumberFontColor;
+    font-size: 12px;
+}
+
+.ringGroup-item-number, .ringGroup-item-number-ubp {
+    border-top: 1px dashed $ringGroupItemNumberBorderTopColor;
+}
+
+.ringGroup-itemSelected {
+    background: $ringGroupItemSelectedBgColor;
+}
+
+.orderPhoneNumber {
+    color: $orderPhoneNumberFontColor;
+}
+
+.callFlipGroup-item {
+    .callFlipGroupName {
+        color: $callFlipGroupItemNameFontColor;
+    }
+    .callFlipGroupNumber {
+        font-size: 12px;
+        color: $callFlipGroupItemNumberFontColor;
+    }
+    .callFlipGroupumberGrey {
+        color: $callFlipGroupItemNumberGrayColor;
+    }
+    .callFlipGroupValue {
+        color: $callFlipGroupItemValueFontColor;
+    }
+    .callFlipGroupValueGray {
+        color: $callFlipGroupItemValueGrayColor;
+    }
+}
+
+.callFlipGroup-positionCell {
+    .orderUp, .orderDown, .orderUpDisabled, .orderDownDisabled {
+        margin-top: 0;
+        display: table-cell;
+        width: $callFlipOrderIconWidth;
+        height: $callFlipOrderIconHeight;
+        background-size: $callFlipOrderIconWidth $callFlipOrderIconHeight;
+    }
+
+    .orderUp {
+        @include backgroundImage(
+        $backgroundImage: "../images/btn_up_small.png",
+        $backgroundImageRetina: "../images/btn_up_small_x2.png",
+        $backgroundSize: $callFlipOrderIconWidth $callFlipOrderIconHeight
+        );
+    }
+    .orderUpDisabled {
+        @include backgroundImage(
+        $backgroundImage: "../images/btn_up_disabled_small.png",
+        $backgroundImageRetina: "../images/btn_up_disabled_small_x2.png",
+        $backgroundSize: $callFlipOrderIconWidth $callFlipOrderIconHeight
+        );
+    }
+    .orderDown {
+        @include backgroundImage(
+        $backgroundImage: "../images/btn_down_small.png",
+        $backgroundImageRetina: "../images/btn_down_small_x2.png",
+        $backgroundSize: $callFlipOrderIconWidth $callFlipOrderIconHeight
+        );
+    }
+    .orderDownDisabled {
+        @include backgroundImage(
+        $backgroundImage: "../images/btn_down_disabled_small.png",
+        $backgroundImageRetina: "../images/btn_down_disabled_small_x2.png",
+        $backgroundSize: $callFlipOrderIconWidth $callFlipOrderIconHeight
+        );
+    }
+}
+
+.backIcon, .nextIcon, .nextIconDisabled {
+    color: transparent;
+}
+
+.backIcon {
+    @include backgroundImage(
+    $backgroundImage: "../images/ic_left_arrow.png",
+    $backgroundPosition: 0 50%,
+    $backgroundImageRetina: "../images/ic_left_arrow_x2.png",
+    $backgroundSize: 13px 21px
+    );
+}
+.nextIcon {
+    @include backgroundImage(
+    $backgroundImage: "../images/ic_right_arrow.png",
+    $backgroundPosition: 100% 50%,
+    $backgroundImageRetina: "../images/ic_right_arrow_x2.png",
+    $backgroundSize: 13px 21px
+    );
+}
+.nextIconDisabled {
+    @include backgroundImage(
+    $backgroundImage: "../images/ic_next_arrow.png",
+    $backgroundPosition: 100% 50%,
+    $backgroundImageRetina: "../images/ic_next_arrow_x2.png",
+    $backgroundSize: 13px 21px
+    );
+}
+
+.triangle-isosceles {
+    color: $triangleIsoscelesFontColor;
+    background: $triangleIsoscelesBgColor;
+    border-color: $triangleIsoscelesBorderColor;
+    border-radius: $tooltipBorderRadius;
+}
+
+.triangle-arrow {
+    border-top-color: $triangleArrowBorderTopColor;
+}
+
+.triangle-arrow:after {
+    border-top-color: $triangleArrowAfterBorderTopColor;
+}
+
+.companyAddressValidate-highLight{
+    color: $companyAddressValidateHighLightColor;
+}
+
+.orderMailboxValue {
+    color: $orderMailboxValueColor;
+    text-align: right;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.filterForm {
+    position: relative;
+    background-color: $filterFormBgColor;
+    padding-top: 4px;
+    width: auto;
+}
+
+.filterForm-placeholder-container {
+    text-align: center;
+}
+
+.filterForm-placeholder-container-focus {
+    text-align: left;
+    .filterForm-search-placeholder{
+        color: transparent;
+    }
+}
+
+.filterForm-search-placeholder {
+    position: relative;
+    display: inline-block;
+    padding-left: 16px;
+    height: 22px;
+    line-height: 22px;
+    color: $searchBoxPlaceholderFontColor;
+    @include backgroundImage(
+    $backgroundImage: "../images/search.png",
+    $backgroundImageRetina: "../images/search_x2.png",
+    $backgroundPosition: 0 50%,
+    $backgroundSize: 13px 13px
+    );
+}
+
+.filterForm input[type="search"]{
+    margin-left: 16px;
+    background-color: transparent;
+    width: 100%;
+    font-size: 14px;
+    height: 22px;
+    line-height: 22px;
+    position: absolute;
+    left: 0;
+    top:0;
+}
+
+.companyAddressContainer {
+    color: $companyAddressContainerFontColor;
+    font-size: 14px;
+}
+
+.forwardPhone-item-phoneContainer {
+    .forwardPhoneLabelName {
+        color: $forwardPhoneLabelNameColor;
+    }
+    .textNameField {
+        font-size: 14px;
+        color: $forwardPhoneTextNameColor;
+    }
+}
+
+.comboBoxValue {
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-style: normal;
+    color: $comboBoxValueColor;
+    font-weight: bold;
+    top: 6px;
+}
+
+.optionTextInfo-text {
+    color: $optionTextInfoFontColor;
+}
+
+.optionTextInfo-subText, .optionTextInfo-value, .optionTextInfo-subValue {
+    color: $optionTextInfoValueFontColor;
+}
+
+.radioButtonText {
+    color: $radioButtonTextColor;
+}
+
+.radioButtonSubText {
+    color: $radioButtonSubTextColor;
+}
+
+.disabledLabelColor {
+    color: $disabledLabelColor;
+}
+
+.disabledValueColor {
+    color: $disabledValueColor;
+}
+
+.bottomHelpInfo {
+    padding: 0px 18px;
+    margin-top: 18px;
+    font-size: 12px;
+    color: $bottomHelpInfoFontColor;
+    h1 {
+        font-size: 1em;
+    }
+    &:after {
+        content: ".";
+        display: block;
+        height: 18px;
+        visibility: hidden;
+    }
+}
+
+.readonly-navigationButton-text {
+    color: $readonlyNavigationButtonTextFontColor;
+}
+
+.text-no-wrap {
+    white-space: nowrap;
+}
+
+.tellAFriend-invite-image{
+    max-width: $tellAFriendInviteImageMaxWidth;
+}
+
+.tellAFriend-invite-button{
+    max-width: $tellAFriendInviteBtnMaxWidth;
+    margin: 20px auto 10px;
+}
+
+//ATT  custom tell a friend
+.invite-friends-custom-recipient-label, .invite-friends-custom-recipient-learn-more, .invite-friends-custom-thankYou-info2{
+    display: none;
+}
+.invite-friends-custom-email-text, .invite-friends-custom-thankYou-info1, .invite-friends-custom-recipient-legal-footer{
+    display: block;
+}
+
+.ivrPrompt-ttsField {
+    .textArea {
+        color: $ivrPromptTTSFieldTextAreaColor;
+    }
+}
+
+.extensionsList-custom-container {
+    display: none;
+    font-weight: bold;
+
+    .extensionListItem {
+        background-color: $extensionsListCustomContainerItemBgColor;
+        border-bottom: 1px solid $extensionsListCustomContainerItemBgColor;
+    }
+
+    .extensionListIcon {
+        margin-right: 20px;
+        width: 24px;
+        background-position: center;
+    }
+
+    .value {
+        line-height: 28px;
+    }
+}
+
+.value_normal {
+
+}
+
+.value_on {
+    color: green;
+}
+
+.value_off {
+    color: red;
+}
+
+.value_in_progress {
+    color: orange;
+}
+
+.break-word {
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+
+.checked-navigation {
+    background: #eee;
 }

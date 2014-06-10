@@ -33,7 +33,7 @@ angular.module(APP_NAME, [
             NEXT: "slide-in"
         };
 
-        $rootScope.containerAnimateClassName = ANIMATION_CLASS_NAME.NEXT;
+        $rootScope.screenAnimationClass = ANIMATION_CLASS_NAME.NEXT;
 
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             //$log.log("Route change start");
@@ -47,14 +47,12 @@ angular.module(APP_NAME, [
             //$log.log(" - Current route: ", current);
 
             if (navigator$.isBack()) {
-                $rootScope.containerAnimateClassName = ANIMATION_CLASS_NAME.BACK;
+                $rootScope.screenAnimationClass = ANIMATION_CLASS_NAME.BACK;
                 navigator$.pop();
             } else {
-                $rootScope.containerAnimateClassName = ANIMATION_CLASS_NAME.NEXT;
+                $rootScope.screenAnimationClass = ANIMATION_CLASS_NAME.NEXT;
                 navigator$.push();
             }
-
-            //$log.log("History stack: ", navigator$.get());
         });
 
         $rootScope.$on("$routeChangeError", function () {
