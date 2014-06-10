@@ -5,7 +5,8 @@ angular.module(APP_NAME, [
     "RCM.services",
     "RCM.directives",
     "RCM.ui",
-    "RCM.screens"
+    "RCM.screens",
+    "RCM.helpers"
 ])
     .config(function($locationProvider, $routeProvider) {
         // Use the hashbang mode.
