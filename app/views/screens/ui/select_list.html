@@ -5,6 +5,13 @@
     <screen-content>
         <h2>Select List</h2>
         <select-list source="listItems" class="select-list"></select-list>
+        <navigation-button text="{{companyInfo.text}}" value="{{companyInfo.value}}" single="{{companyInfo.isSingle}}" on-click="companyInfo.onClick()" style="margin-bottom: 10px;"></navigation-button>
+        <navigation-list>
+            <navigation-button text="{{companyInfo.text}}" value="{{companyInfo.value}}" on-click="companyInfo.onClick()"></navigation-button>
+            <navigation-button text="{{companyInfo.text}}" value="{{companyInfo.value}}" on-click="companyInfo.onClick()"></navigation-button>
+            <navigation-button text="{{companyInfo.text}}" value="{{companyInfo.value}}" on-click="companyInfo.onClick()"></navigation-button>
+            <navigation-button text="{{companyInfo.text}}" value="{{companyInfo.value}}" on-click="companyInfo.onClick()"></navigation-button>
+        </navigation-list>
     </screen-content>
 
 </screen>
