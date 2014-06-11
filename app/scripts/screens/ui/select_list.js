@@ -16,6 +16,14 @@ angular.module("RCM.screens")
                 {name: "Apple", checked: true},
                 {name: "Banana", checked: false}
             ];
+            $scope.companyInfo = {
+                text: 'company name',
+                value: 'ringCentral',
+                onClick: function(){
+                    alert("You click me!");
+                },
+                isSingle: true
+            };
         }
     });
 
