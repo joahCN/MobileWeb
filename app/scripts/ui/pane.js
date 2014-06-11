@@ -1,17 +1,12 @@
 angular.module("RCM.ui")
-    .directive("pane", function ($location) {
+    .directive("pane", function ($location, extractAttrsToScope) {
         return {
             restrict: "AE",
             replace: true,
             transclude: true,
             templateUrl: "/views/ui/pane.html",
             link: function (scope, elem, attrs) {
-
-                angular.forEach(["label", "icon", "screen"], function (item) {
-                    if (angular.isDefined(attrs[item])) {
-                        scope[item] = attrs[item];
-                    }
-                });
+                extractAttrsToScope(scope, attrs, ["label", "icon", "screen"]);
 
                 angular.isDefined(scope.screen) && (scope.hasIndicator = true);
 
