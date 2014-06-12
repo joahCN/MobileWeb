@@ -19,8 +19,11 @@ angular.module("RCM.helpers")
              */
             return function (scope, attrs, fields) {
                 angular.forEach(fields, function (field) {
-                    if (angular.isDefined(attrs[field])) {
-                        scope[field] = attrs[field];
+
+                    // Properties in attrs are all in LOWERCASE.
+                    var fieldInLowerCase = field.toLowerCase();
+                    if (angular.isDefined(attrs[fieldInLowerCase])) {
+                        scope[field] = attrs[fieldInLowerCase];
                     }
                 });
             };
