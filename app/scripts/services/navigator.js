@@ -32,12 +32,27 @@ angular.module("RCM.services")
 
                 save();
             },
+
             clean: function () {
                 historyStack = [];
                 save();
             },
+
             get: function () {
                 return historyStack;
+            },
+
+            getStackLength: function () {
+                return historyStack.length;
+            },
+
+            back: function () {
+                var stackLength = historyStack.length;
+                var path = '/';
+                if (stackLength > 1) {
+                    path = historyStack[stackLength - 2].path;
+                }
+                $location.path(path);
             },
 
             /**
