@@ -1,58 +1,58 @@
-angular.module("RCM.services")
-    .factory("navigator$", function ($location, $window) {
-        var STORAGE_KEY = "historyStack";
-        var storage = $window.localStorage;
-        var historyStack = [];
-        var historyStackInStore = storage.getItem(STORAGE_KEY);
-
-        try {
-            historyStack = JSON.parse(historyStackInStore);
-        } catch(e) {}
+angular.module('RCM.services')
+    .factory('navigator$', function ($location, screens$) {
+        var historyStack = getHistoryStack();
+        historyStack.load();
 
         return {
-            push: function () {
-                historyStack.push({
-                    "path": $location.path()
-                });
-                save();
+
+            /**
+             * Push #path into history stack.
+             * @param {String} path
+             */
+            push: function (path) {
+                path = path || $location.path();
+                historyStack.push({'path': path});
             },
 
             /**
-             * Delete paths from historyStack form index of current path.
+             * Delete paths after current path.
              */
             pop: function () {
-                var pathIndex = getPathIndex();
-                if (pathIndex > -1) {
-                    var numberToDelete = historyStack.length - (pathIndex + 1);
-                    while(numberToDelete > 0) {
+                var currentPath = $location.path();
+                if (historyStack.exist(currentPath)) {
+                    var pathIndex = historyStack.lastIndexOf(currentPath);
+                    var numberToDelete = historyStack.size() - (pathIndex + 1);
+                    while (numberToDelete > 0) {
                         historyStack.pop();
                         numberToDelete--;
                     }
                 }
-
-                save();
             },
 
+            /**
+             * Delete all screens in the history stack.
+             */
             clean: function () {
-                historyStack = [];
-                save();
+                historyStack.clean();
             },
 
-            get: function () {
-                return historyStack;
-            },
+            /**
+             * Go to the specific screen.If path does not exist, go main screen.
+             * @param {String} path
+             */
+            go: function (path) {
+                $location.path(parsePath());
 
-            getStackLength: function () {
-                return historyStack.length;
-            },
-
-            back: function () {
-                var stackLength = historyStack.length;
-                var path = '/';
-                if (stackLength > 1) {
-                    path = historyStack[stackLength - 2].path;
+                function parsePath() {
+                    return screens$.exist(path) ? path : screens$.error;
                 }
-                $location.path(path);
+            },
+
+            /**
+             * Go to previous screen.
+             */
+            back: function () {
+                this.go(historyStack.getPreviousPath());
             },
 
             /**
@@ -60,30 +60,93 @@ angular.module("RCM.services")
              * @returns {boolean}
              */
             isBack: function () {
-                return getPathIndex() > -1;
+                return historyStack.exist($location.path());
             }
         };
 
-        /**
-         * Get index in the historyStack of currentPath
-         * @returns {number}
-         */
-        function getPathIndex() {
-            var index = -1;
-            var i = historyStack.length - 1;
-            var currentPath = $location.path();
+        function getHistoryStack() {
+            var STORAGE_KEY = "MWHistoryStack";
 
-            while (i >= 0) {
-                if (historyStack[i].path === currentPath) {
-                    index = i;
-                    return index;
+            var self = {
+                load: function () {
+                    this.stack = isSessionStorageAvailable() ?
+                        getStackFromSessionStorage() :
+                        [];
+
+                    function getStackFromSessionStorage() {
+                        try {
+                            var historyStackInStore = sessionStorage.getItem(STORAGE_KEY);
+                            return angular.fromJson(historyStackInStore) || [];
+                        } catch (e) {
+                            return [];
+                        }
+                    }
+                },
+                save: function () {
+                    try {
+                        sessionStorage.setItem(STORAGE_KEY, angular.toJson(this.stack));
+                    } catch(e) {}
+                },
+
+                clean: function () {
+                    this.stack = [];
+                },
+
+                push: function (obj) {
+                    this.stack.push(obj);
+                    this.save();
+                },
+
+                pop: function () {
+                    var lastItem = this.stack.pop();
+                    this.save();
+
+                    return lastItem;
+                },
+
+                indexOf: function (obj) {
+                    for (var i = 0; i < this.size(); i++) {
+                        var objectInStack = this.stack[i];
+                        if (angular.equals(obj, objectInStack)) {
+                            return i;
+                        }
+                    }
+                    return -1;
+                },
+
+                lastIndexOf: function (path) {
+                    for (var i = this.size() - 1; i >= 0; i--) {
+                        var objectInStack = this.stack[i];
+                        if (objectInStack.path === path) {
+                            return i;
+                        }
+                    }
+                    return -1;
+                },
+
+                exist: function (path) {
+                    return this.lastIndexOf(path) > -1;
+                },
+
+                getPath: function(path) {
+                    return this.exist(path) ? this.lastIndexOf(path) : screens$.main;
+                },
+
+                getPreviousPath: function () {
+                    return this.size() > 1 ? this.stack[this.size() - 2].path : screens$.main;
+                },
+
+                size: function () {
+                    return this.stack.length;
                 }
-                i--;
-            }
-            return index;
-        }
+            };
 
-        function save() {
-            storage.setItem(STORAGE_KEY, JSON.stringify(historyStack));
+            self.load();
+
+            return self;
+
+            function isSessionStorageAvailable() {
+                return navigator.cookieEnabled && window.sessionStorage;
+            }
         }
     });

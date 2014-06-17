@@ -12,7 +12,7 @@ angular.module("RCM.directives")
                 createDefaultLeftButton();
 
                 function createDefaultLeftButton() {
-                    if (!scope.screenHeader.leftButton && navigator$.getStackLength() > 1) {
+                    if (!scope.screenHeader.leftButton) {
                         scope.screenHeader.leftButton = {
                             text: "Back",
                             click: function () {
