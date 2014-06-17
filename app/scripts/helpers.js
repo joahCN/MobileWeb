@@ -27,5 +27,16 @@ angular.module("RCM.helpers")
                     }
                 });
             };
-        }
+        };
+    })
+
+    /**
+     * Add current screen to screens$ service.
+     */
+    .provider("registerScreen", function () {
+        this.$get = function (screens$) {
+            return function() {
+                screens$.add();
+            }
+        };
     });

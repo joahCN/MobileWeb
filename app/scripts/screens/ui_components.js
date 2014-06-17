@@ -1,6 +1,8 @@
 angular.module("RCM.screens")
-    .controller("ScreenUIComponents", function ($scope) {
+    .controller("ScreenUIComponents", function ($scope, registerScreen) {
         console.log("Screen Controller: UIComponents");
+
+        registerScreen();
 
         initScreenHeader();
         initScreenBody();
