@@ -1,13 +1,4 @@
-var APP_NAME = "RCM";
-
-angular.module(APP_NAME, [
-    "ngRoute",
-    "RCM.services",
-    "RCM.directives",
-    "RCM.ui",
-    "RCM.screens",
-    "RCM.helpers"
-])
+mainModule
     .config(function($locationProvider, $routeProvider) {
         // Use the hashbang mode.
         $locationProvider.hashPrefix('!');
