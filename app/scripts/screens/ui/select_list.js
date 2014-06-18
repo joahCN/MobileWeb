@@ -1,6 +1,8 @@
 angular.module("RCM.screens")
-    .controller("ScreenUISelectList", function ($scope) {
+    .controller("ScreenUISelectList", function ($scope, registerScreen) {
         console.log("Screen Controller: SelectList");
+
+        registerScreen();
 
         initScreenHeader();
         initScreenBody();

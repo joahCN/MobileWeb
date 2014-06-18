@@ -1,6 +1,8 @@
 angular.module("RCM.screens")
-    .controller("ScreenUIComponents", function ($scope) {
+    .controller("ScreenUIComponents", function ($scope, registerScreen) {
         console.log("Screen Controller: UIComponents");
+
+        registerScreen();
 
         initScreenHeader();
         initScreenBody();
@@ -16,9 +18,9 @@ angular.module("RCM.screens")
         function initScreenBody() {
             $scope.panes = [
                 {
-                    icon: "/images/ico_payment-method.svg",
-                    title: "Switch",
-                    screen: "screen/ui/switch"
+                    icon: "/images/edit_dep_menu_info.svg",
+                    title: "Form Elements",
+                    screen: "screen/ui/forms"
                 },
                 {
                     icon: "/images/ico_service-plan.svg",

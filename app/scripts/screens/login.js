@@ -1,6 +1,8 @@
 angular.module("RCM.screens")
-    .controller("ScreenLogin", function ($http, $scope) {
+    .controller("ScreenLogin", function ($http, $scope, registerScreen) {
         console.log("Screen Controller: Login");
+
+        registerScreen();
 
         initScreenHeader();
         initScreenContent();

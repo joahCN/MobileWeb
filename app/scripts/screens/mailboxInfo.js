@@ -1,6 +1,8 @@
 angular.module("RCM.screens")
-    .controller("ScreenMailboxInfo", function ($scope) {
+    .controller("ScreenMailboxInfo", function ($scope, registerScreen) {
         console.log("Screen Controller: MailboxInfo");
+
+        registerScreen();
 
         initScreenHeader();
         initScreenBody();
